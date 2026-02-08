@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://Sprites/open_r.png" id="5_5dcil"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="6_tay7t"]
 [ext_resource type="Texture2D" uid="uid://y0ivgkbwcqtb" path="res://icon.svg" id="7_jw2oo"]
+[ext_resource type="PackedScene" uid="uid://bl2hxioa8pelu" path="res://Prefabs/frog.tscn" id="8_jw2oo"]
 
 [node name="Intro" type="Node2D" unique_id=1805270620]
 
@@ -56,7 +57,7 @@ grow_vertical = 2
 pivot_offset = Vector2(45, 20)
 theme_override_fonts/normal_font = ExtResource("6_tay7t")
 theme_override_font_sizes/normal_font_size = 10
-text = "By
+text = "Recreated By
 Kyle Fuji
 
 
@@ -88,3 +89,6 @@ vertical_alignment = 1
 position = Vector2(191, 169)
 scale = Vector2(0.3196065, 0.3196065)
 texture = ExtResource("7_jw2oo")
+
+[node name="Frog" parent="." unique_id=454979244 instance=ExtResource("8_jw2oo")]
+position = Vector2(25, 117)
