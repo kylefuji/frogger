@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bau0dfeokjtm1"]
+
+[ext_resource type="Texture2D" uid="uid://du4h0y624els1" path="res://Sprites/open_e.png" id="1_u3s32"]
+[ext_resource type="Texture2D" uid="uid://dekmqq0s66gcd" path="res://Sprites/open_f.png" id="2_ina6a"]
+[ext_resource type="Texture2D" uid="uid://cldicnpq8ge0w" path="res://Sprites/open_g.png" id="3_tay7t"]
+[ext_resource type="Texture2D" uid="uid://bo8llqn2b5jif" path="res://Sprites/open_o.png" id="4_jw2oo"]
+[ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://Sprites/open_r.png" id="5_5dcil"]
+[ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="6_tay7t"]
+[ext_resource type="Texture2D" uid="uid://y0ivgkbwcqtb" path="res://icon.svg" id="7_jw2oo"]
+
+[node name="Intro" type="Node2D" unique_id=1805270620]
+
+[node name="IntroHolder" type="Node2D" parent="." unique_id=1439788333]
+position = Vector2(192, 46)
+scale = Vector2(2, 2)
+
+[node name="OpenE" type="Sprite2D" parent="IntroHolder" unique_id=1755522928]
+position = Vector2(32, 0)
+texture = ExtResource("1_u3s32")
+
+[node name="OpenF" type="Sprite2D" parent="IntroHolder" unique_id=974955062]
+position = Vector2(-48, 0)
+texture = ExtResource("2_ina6a")
+
+[node name="OpenG" type="Sprite2D" parent="IntroHolder" unique_id=793068366]
+texture = ExtResource("3_tay7t")
+
+[node name="OpenG2" type="Sprite2D" parent="IntroHolder" unique_id=1256289849]
+position = Vector2(16, 0)
+texture = ExtResource("3_tay7t")
+
+[node name="OpenO" type="Sprite2D" parent="IntroHolder" unique_id=1424928875]
+position = Vector2(-16, 0)
+texture = ExtResource("4_jw2oo")
+
+[node name="OpenR" type="Sprite2D" parent="IntroHolder" unique_id=192636255]
+position = Vector2(-32, 0)
+texture = ExtResource("5_5dcil")
+
+[node name="OpenR2" type="Sprite2D" parent="IntroHolder" unique_id=1028570043]
+position = Vector2(48, 0)
+texture = ExtResource("5_5dcil")
+
+[node name="MadeBy" type="RichTextLabel" parent="." unique_id=719344209]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 147.0
+offset_top = 67.0
+offset_right = 237.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 20)
+theme_override_fonts/normal_font = ExtResource("6_tay7t")
+theme_override_font_sizes/normal_font_size = 10
+text = "By
+Kyle Fuji
+
+
+
+Made with"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GodotLabel" type="RichTextLabel" parent="." unique_id=1915609767]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 147.0
+offset_top = 190.0
+offset_right = 237.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 20)
+theme_override_fonts/normal_font = ExtResource("6_tay7t")
+theme_override_font_sizes/normal_font_size = 10
+text = "Godot 4.6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GodotIcon" type="Sprite2D" parent="." unique_id=1733256418]
+position = Vector2(191, 169)
+scale = Vector2(0.3196065, 0.3196065)
+texture = ExtResource("7_jw2oo")
