@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bau0dfeokjtm1"]
 
-[ext_resource type="Texture2D" uid="uid://du4h0y624els1" path="res://Sprites/open_e.png" id="1_u3s32"]
-[ext_resource type="Texture2D" uid="uid://dekmqq0s66gcd" path="res://Sprites/open_f.png" id="2_ina6a"]
-[ext_resource type="Texture2D" uid="uid://cldicnpq8ge0w" path="res://Sprites/open_g.png" id="3_tay7t"]
-[ext_resource type="Texture2D" uid="uid://bo8llqn2b5jif" path="res://Sprites/open_o.png" id="4_jw2oo"]
-[ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://Sprites/open_r.png" id="5_5dcil"]
+[ext_resource type="Texture2D" uid="uid://du4h0y624els1" path="res://Textures/open_e.png" id="1_u3s32"]
+[ext_resource type="Texture2D" uid="uid://dekmqq0s66gcd" path="res://Textures/open_f.png" id="2_ina6a"]
+[ext_resource type="Texture2D" uid="uid://cldicnpq8ge0w" path="res://Textures/open_g.png" id="3_tay7t"]
+[ext_resource type="Texture2D" uid="uid://bo8llqn2b5jif" path="res://Textures/open_o.png" id="4_jw2oo"]
+[ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://Textures/open_r.png" id="5_5dcil"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="6_tay7t"]
 [ext_resource type="Texture2D" uid="uid://y0ivgkbwcqtb" path="res://icon.svg" id="7_jw2oo"]
-[ext_resource type="PackedScene" uid="uid://bl2hxioa8pelu" path="res://Prefabs/frog.tscn" id="8_jw2oo"]
+[ext_resource type="PackedScene" uid="uid://bl2hxioa8pelu" path="res://Sprites/frog.tscn" id="8_jw2oo"]
 
 [node name="Intro" type="Node2D" unique_id=1805270620]
 
@@ -91,4 +91,5 @@ scale = Vector2(0.3196065, 0.3196065)
 texture = ExtResource("7_jw2oo")
 
 [node name="Frog" parent="." unique_id=454979244 instance=ExtResource("8_jw2oo")]
-position = Vector2(25, 117)
+position = Vector2(192, 114)
+scale = Vector2(2, 2)

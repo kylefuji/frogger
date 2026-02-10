@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cdfw6wudide1a"]
+
+[ext_resource type="Texture2D" uid="uid://dklc7p4t8niq3" path="res://Textures/log_left.png" id="1_8x43l"]
+[ext_resource type="Texture2D" uid="uid://cyh7i5s7wxhr2" path="res://Textures/log_middle.png" id="2_aty45"]
+[ext_resource type="Texture2D" uid="uid://clshu4dlhx2gc" path="res://Textures/log_right.png" id="3_ojdre"]
+
+[node name="Log3" type="Node2D" unique_id=1557458088]
+
+[node name="LogLeft" type="Sprite2D" parent="." unique_id=1243828520]
+position = Vector2(-32, 0)
+texture = ExtResource("1_8x43l")
+
+[node name="LogMiddle" type="Sprite2D" parent="." unique_id=1158333921]
+texture = ExtResource("2_aty45")
+
+[node name="LogMiddle3" type="Sprite2D" parent="." unique_id=296188755]
+position = Vector2(-16, 0)
+texture = ExtResource("2_aty45")
+
+[node name="LogMiddle2" type="Sprite2D" parent="." unique_id=1973791218]
+position = Vector2(16, 0)
+texture = ExtResource("2_aty45")
+
+[node name="LogMiddle4" type="Sprite2D" parent="." unique_id=1532701102]
+position = Vector2(32, 0)
+texture = ExtResource("2_aty45")
+
+[node name="LogRight" type="Sprite2D" parent="." unique_id=1156247153]
+position = Vector2(48, 0)
+texture = ExtResource("3_ojdre")

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bu7g0frkgg82i"]
+
+[ext_resource type="Texture2D" uid="uid://cs058auoyw2cn" path="res://Textures/turtle0000.png" id="1_i4cbw"]
+[ext_resource type="Texture2D" uid="uid://gapr8q4wg3j3" path="res://Textures/turtle0001.png" id="2_6odg1"]
+[ext_resource type="Texture2D" uid="uid://bs7lm1lu32oum" path="res://Textures/turtle0002.png" id="3_rgd3l"]
+[ext_resource type="Texture2D" uid="uid://clokf8kw8lwk2" path="res://Textures/turtle0003.png" id="4_jyn5a"]
+[ext_resource type="Texture2D" uid="uid://bvv2f0yibcd5m" path="res://Textures/turtle0004.png" id="5_isrsi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3xnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i4cbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6odg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rgd3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jyn5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_isrsi")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_isrsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jyn5a")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i4cbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6odg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rgd3l")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}]
+
+[node name="Turtle" type="AnimatedSprite2D" unique_id=1512488169]
+rotation = 3.1415925
+sprite_frames = SubResource("SpriteFrames_x3xnh")
+animation = &"dive"
+autoplay = "swim"
+frame_progress = 0.6285234

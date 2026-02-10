@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://180qjm2xi2iv"]
+
+[ext_resource type="Texture2D" uid="uid://cdtt4tcv81wm0" path="res://Textures/car_2.png" id="1_d1tex"]
+
+[node name="Car2" type="Sprite2D" unique_id=222443578]
+rotation = 3.1415925
+texture = ExtResource("1_d1tex")

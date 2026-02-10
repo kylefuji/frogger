@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://sp3g4ttoifko"]
-
-[ext_resource type="PackedScene" uid="uid://bl2hxioa8pelu" path="res://Prefabs/frog.tscn" id="1_iukft"]
-
-[node name="Game" type="Node2D" unique_id=942719916]
-
-[node name="Frog" parent="." unique_id=454979244 instance=ExtResource("1_iukft")]
-position = Vector2(188, 112)

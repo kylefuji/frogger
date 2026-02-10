@@ -15,10 +15,14 @@ run/main_scene="uid://sp3g4ttoifko"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://bdclw8pgvmvy6"
+
 [display]
 
 window/size/viewport_width=384
-window/size/viewport_height=216
+window/size/viewport_height=232
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
@@ -71,3 +75,4 @@ version_control/autoload_on_startup=true
 
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
