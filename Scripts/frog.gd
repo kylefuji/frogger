@@ -17,7 +17,6 @@ func _ready() -> void:
 	initial_position = position
 
 func _physics_process(delta: float) -> void:
-	print(position)
 	if death_zone and not safe_zone and not moving:
 		death()
 	elif moving:
@@ -54,31 +53,28 @@ func move(delta: float) -> void:
 		moving = true
 	
 	elif moving:
-		#var distance = abs(global_position * target_direction).distance_to(abs(target_position * target_direction))
 		var distance = global_position.distance_to(target_position)
 		
 		var max_speed_this_frame = distance / delta
 		var current_speed = min(speed, max_speed_this_frame)
-
-		velocity = target_direction * current_speed
-		var collision
 		
 		if current_platform:
 			var delta_pos = current_platform.global_position - last_platform_pos
 			target_position += delta_pos
-			collision = move_and_collide(velocity * delta + delta_pos)
+			velocity = target_direction * current_speed + delta_pos/delta
 			last_platform_pos = current_platform.global_position
 		else:
-			collision = move_and_collide(velocity * delta)
+			velocity = target_direction * current_speed
 		
-		if distance < 1.0: # Use a small threshold
-			position = target_position
+		move_and_slide()
+		
+		if distance < 1.0: 
 			target_direction = Vector2.ZERO
 			target_position = Vector2.ZERO
 			moving = false
 			velocity = Vector2.ZERO
-		
-		elif collision:
+			
+		if is_on_wall():
 			moving = false
 			target_direction = Vector2.ZERO
 			target_position = Vector2.ZERO
@@ -86,8 +82,8 @@ func move(delta: float) -> void:
 			
 	elif current_platform:
 		var delta_pos = current_platform.global_position - last_platform_pos
-		target_position += delta_pos
-		move_and_collide(velocity * delta + delta_pos)
+		velocity = delta_pos/delta
+		move_and_slide()
 		last_platform_pos = current_platform.global_position
 			
 func death() -> void:
@@ -118,10 +114,29 @@ func _on_platform_area_body_entered(body: Node2D, nodePath: NodePath) -> void:
 		current_platform = get_node(nodePath)
 		last_platform_pos = current_platform.global_position
 		safe_zone = true
-		print("entered")
 
 func _on_platform_area_body_exited(body: Node2D, nodePath: NodePath) -> void:
 	if body == self and current_platform == get_node(nodePath):
 		current_platform = null
 		safe_zone = false
-		print("exit")
+
+
+func _on_platform_area_platform_entered(body: Node2D, platform: Area2D) -> void:
+	if body == self and not playing_dying_animation:
+		current_platform = platform
+		last_platform_pos = current_platform.global_position
+		safe_zone = true
+
+
+func _on_platform_area_platform_exited(body: Node2D, platform: Area2D) -> void:
+	if body == self and current_platform == platform:
+		current_platform = null
+		safe_zone = false
+
+
+func _on_score_area_score() -> void:
+	print("score")
+	moving = false
+	death_zone = false
+	safe_zone = false
+	position = initial_position

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dp0j4m4xyd6he"]
+
+[ext_resource type="Script" uid="uid://cfmddpj78jms0" path="res://Scripts/platform_area.gd" id="1_qanqp"]
+[ext_resource type="PackedScene" uid="uid://cmgvyq0ia768v" path="res://Sprites/log_1.tscn" id="2_ci5p6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8lqk"]
+size = Vector2(48, 16)
+
+[node name="LogPlatformArea" type="Area2D" unique_id=1080434313]
+script = ExtResource("1_qanqp")
+speed = 60.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=332618223]
+shape = SubResource("RectangleShape2D_j8lqk")
+
+[node name="Log1" parent="." unique_id=1557458088 instance=ExtResource("2_ci5p6")]

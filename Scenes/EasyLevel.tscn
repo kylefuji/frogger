@@ -9,9 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://be0i8aio0bh3j" path="res://Sprites/car_3.tscn" id="7_b2wdt"]
 [ext_resource type="PackedScene" uid="uid://b860nd7v0l4w7" path="res://Sprites/truck.tscn" id="8_o7670"]
 [ext_resource type="PackedScene" uid="uid://bu7g0frkgg82i" path="res://Sprites/turtle.tscn" id="9_dq5qq"]
+[ext_resource type="Script" uid="uid://cfmddpj78jms0" path="res://Scripts/platform_area.gd" id="9_wt3ij"]
 [ext_resource type="PackedScene" uid="uid://cmgvyq0ia768v" path="res://Sprites/log_1.tscn" id="10_to23j"]
+[ext_resource type="Script" uid="uid://cv216d72n33rl" path="res://Scripts/turtle_dive_platform_area.gd" id="11_g2y7n"]
 [ext_resource type="PackedScene" uid="uid://cdfw6wudide1a" path="res://Sprites/log_3.tscn" id="11_vqvrl"]
 [ext_resource type="PackedScene" uid="uid://dxxnrpxv4vnjf" path="res://Sprites/log_2.tscn" id="12_dlxis"]
+[ext_resource type="PackedScene" uid="uid://cgnurhij7fa4" path="res://Sprites/flower_ground_2.tscn" id="15_md05f"]
+[ext_resource type="Script" uid="uid://des4m3aochcxf" path="res://Scripts/score_area.gd" id="16_vcsyi"]
+[ext_resource type="Texture2D" uid="uid://bokb1l4tt7cat" path="res://Textures/end_frog.png" id="17_doyxy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
 size = Vector2(384, 94)
@@ -43,52 +48,36 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf53h"]
 size = Vector2(30, 14)
 
-[sub_resource type="Curve2D" id="Curve2D_3cx6b"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, -42.75, 0, -464, 0)
-}
-point_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cx6b"]
-size = Vector2(48, 15.99999)
-
-[sub_resource type="Curve2D" id="Curve2D_u0xxi"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, -42.75, 0, -448, 0)
-}
-point_count = 2
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0xxi"]
-size = Vector2(32, 15.99999)
+size = Vector2(48, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8lqk"]
+size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2y7n"]
-size = Vector2(32.181305, 15.99999)
+size = Vector2(96, 16)
 
-[sub_resource type="Curve2D" id="Curve2D_71axn"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, -42.75, 0, 464, 0)
-}
-point_count = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md05f"]
+size = Vector2(32, 16)
 
-[sub_resource type="Curve2D" id="Curve2D_dahhg"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, -42.75, 0, 512, 0)
-}
-point_count = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcsyi"]
+size = Vector2(32, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3so38"]
-size = Vector2(96, 15.99999)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckaj2"]
+size = Vector2(64, 16)
 
-[sub_resource type="Curve2D" id="Curve2D_3so38"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, -42.75, 0, 480, 0)
-}
-point_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_acvyw"]
-size = Vector2(64, 15.99999)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doyxy"]
+size = Vector2(16, 16)
 
 [node name="EasyLevel" type="Node2D" unique_id=942719916]
+
+[node name="Frog" parent="." unique_id=454979244 instance=ExtResource("1_u0xxi")]
+z_index = 4096
+position = Vector2(192, 208)
+rotation = -1.5707964
+collision_mask = 3
+motion_mode = 1
+platform_wall_layers = 2
 
 [node name="Water" type="Area2D" parent="." unique_id=1255812646]
 position = Vector2(0, 8)
@@ -109,6 +98,7 @@ position = Vector2(0, 16)
 
 [node name="Wall" type="StaticBody2D" parent="Walls" unique_id=961224276]
 position = Vector2(192, 210)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall" unique_id=1371328073]
 position = Vector2(-1.5, 9)
@@ -116,6 +106,7 @@ shape = SubResource("RectangleShape2D_b2bpf")
 
 [node name="Wall2" type="StaticBody2D" parent="Walls" unique_id=1854424590]
 position = Vector2(192, -36)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2" unique_id=1935826367]
 position = Vector2(-1.5, 9)
@@ -124,6 +115,7 @@ shape = SubResource("RectangleShape2D_b2bpf")
 [node name="Wall3" type="StaticBody2D" parent="Walls" unique_id=1961668457]
 position = Vector2(412, 98)
 rotation = 1.5707964
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3" unique_id=794283615]
 position = Vector2(-1.5, 9)
@@ -132,14 +124,11 @@ shape = SubResource("RectangleShape2D_b2bpf")
 [node name="Wall4" type="StaticBody2D" parent="Walls" unique_id=1950898618]
 position = Vector2(-10, 97)
 rotation = 1.5707964
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4" unique_id=791260225]
 position = Vector2(-1.5, 9)
 shape = SubResource("RectangleShape2D_b2bpf")
-
-[node name="Frog" parent="." unique_id=454979244 instance=ExtResource("1_u0xxi")]
-z_index = 4096
-position = Vector2(192, 208)
 
 [node name="SafeFlowerZone" type="Node2D" parent="." unique_id=1757779996]
 position = Vector2(192, 208)
@@ -453,540 +442,504 @@ shape = SubResource("RectangleShape2D_bf53h")
 
 [node name="Truck" parent="TruckPath1/TruckPathFollow2" unique_id=24675490 instance=ExtResource("8_o7670")]
 
-[node name="TurtlePath" type="Path2D" parent="." unique_id=1945814457]
-position = Vector2(408, 96)
-curve = SubResource("Curve2D_3cx6b")
+[node name="TurtleRow" type="Node2D" parent="." unique_id=532940283]
 
-[node name="TurtlePathFollow" type="PathFollow2D" parent="TurtlePath" unique_id=164203099]
-position = Vector2(-80.5012, 0)
-rotation = 3.1415927
-progress = 80.504
-script = ExtResource("3_ckaj2")
-speed = 0.1
+[node name="TurtlePlatformArea" type="Area2D" parent="TurtleRow" unique_id=296064557]
+position = Vector2(425, 96)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
 
-[node name="PlatformArea" type="Area2D" parent="TurtlePath/TurtlePathFollow" unique_id=1493601784]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath/TurtlePathFollow/PlatformArea" unique_id=1512488169 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath/TurtlePathFollow/PlatformArea" unique_id=1141026232 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="Turtle3" parent="TurtlePath/TurtlePathFollow/PlatformArea" unique_id=322563093 instance=ExtResource("9_dq5qq")]
-position = Vector2(-32, 2.7975289e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath/TurtlePathFollow/PlatformArea" unique_id=395434625]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
-
-[node name="TurtlePathFollow2" type="PathFollow2D" parent="TurtlePath" unique_id=853159232]
-position = Vector2(-169.26634, 0)
-rotation = 3.1415927
-progress = 169.2672
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath/TurtlePathFollow2" unique_id=978709178]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath/TurtlePathFollow2/PlatformArea" unique_id=812727661 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath/TurtlePathFollow2/PlatformArea" unique_id=420009952 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="Turtle3" parent="TurtlePath/TurtlePathFollow2/PlatformArea" unique_id=1096557241 instance=ExtResource("9_dq5qq")]
-position = Vector2(-32, 2.7975289e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath/TurtlePathFollow2/PlatformArea" unique_id=973211684]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
-
-[node name="TurtlePathDiveFollow" type="PathFollow2D" parent="TurtlePath" unique_id=1101077218]
-rotation = 3.1415927
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath/TurtlePathDiveFollow" unique_id=63723858]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath/TurtlePathDiveFollow/PlatformArea" unique_id=1571906995 instance=ExtResource("9_dq5qq")]
-autoplay = "dive"
-
-[node name="Turtle2" parent="TurtlePath/TurtlePathDiveFollow/PlatformArea" unique_id=749027145 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-autoplay = "dive"
-
-[node name="Turtle3" parent="TurtlePath/TurtlePathDiveFollow/PlatformArea" unique_id=1433976858 instance=ExtResource("9_dq5qq")]
-position = Vector2(-32, 2.7975289e-06)
-autoplay = "dive"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath/TurtlePathDiveFollow/PlatformArea" unique_id=295029791]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
-
-[node name="TurtlePathFollow3" type="PathFollow2D" parent="TurtlePath" unique_id=317408217]
-position = Vector2(-335.33893, 0)
-rotation = 3.1415927
-progress = 335.3328
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath/TurtlePathFollow3" unique_id=1486118591]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath/TurtlePathFollow3/PlatformArea" unique_id=286527465 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath/TurtlePathFollow3/PlatformArea" unique_id=169904096 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="Turtle3" parent="TurtlePath/TurtlePathFollow3/PlatformArea" unique_id=2062591092 instance=ExtResource("9_dq5qq")]
-position = Vector2(-32, 2.7975289e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath/TurtlePathFollow3/PlatformArea" unique_id=1753496391]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
-
-[node name="TurtlePathDiveFollow2" type="PathFollow2D" parent="TurtlePath" unique_id=1596337245]
-position = Vector2(-251.85947, 0)
-rotation = 3.1415927
-progress = 251.8592
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath/TurtlePathDiveFollow2" unique_id=1838841196]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath/TurtlePathDiveFollow2/PlatformArea" unique_id=637948534 instance=ExtResource("9_dq5qq")]
-autoplay = "dive"
-
-[node name="Turtle2" parent="TurtlePath/TurtlePathDiveFollow2/PlatformArea" unique_id=200315256 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-autoplay = "dive"
-
-[node name="Turtle3" parent="TurtlePath/TurtlePathDiveFollow2/PlatformArea" unique_id=1308370889 instance=ExtResource("9_dq5qq")]
-position = Vector2(-32, 2.7975289e-06)
-autoplay = "dive"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath/TurtlePathDiveFollow2/PlatformArea" unique_id=394481226]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
-
-[node name="TurtlePath2" type="Path2D" parent="." unique_id=577114298]
-position = Vector2(408, 48)
-curve = SubResource("Curve2D_u0xxi")
-
-[node name="TurtlePathFollow" type="PathFollow2D" parent="TurtlePath2" unique_id=708124475]
-position = Vector2(-51.203987, 0)
-rotation = 3.1415927
-progress = 51.206398
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathFollow" unique_id=1841003601]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath2/TurtlePathFollow/PlatformArea" unique_id=849335530 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathFollow/PlatformArea" unique_id=454533296 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathFollow/PlatformArea" unique_id=1802923579]
-position = Vector2(-8, 3.4332275e-05)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtlePlatformArea" unique_id=57700647]
 shape = SubResource("RectangleShape2D_u0xxi")
 
-[node name="TurtlePathFollow2" type="PathFollow2D" parent="TurtlePath2" unique_id=1212177946]
-position = Vector2(-104.38111, 0)
-rotation = 3.1415927
-progress = 104.383995
-script = ExtResource("3_ckaj2")
-speed = 0.1
+[node name="Turtle" parent="TurtleRow/TurtlePlatformArea" unique_id=1512488169 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
 
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathFollow2" unique_id=1271323794]
-collision_layer = 4
-gravity_point = true
+[node name="Turtle2" parent="TurtleRow/TurtlePlatformArea" unique_id=1823173686 instance=ExtResource("9_dq5qq")]
 
-[node name="Turtle" parent="TurtlePath2/TurtlePathFollow2/PlatformArea" unique_id=247057561 instance=ExtResource("9_dq5qq")]
+[node name="Turtle3" parent="TurtleRow/TurtlePlatformArea" unique_id=541796049 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
 
-[node name="Turtle2" parent="TurtlePath2/TurtlePathFollow2/PlatformArea" unique_id=1197969857 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
+[node name="TurtlePlatformArea2" type="Area2D" parent="TurtleRow" unique_id=513732141]
+position = Vector2(270, 96)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathFollow2/PlatformArea" unique_id=1789182579]
-position = Vector2(-8, 3.4332275e-05)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtlePlatformArea2" unique_id=1853042635]
 shape = SubResource("RectangleShape2D_u0xxi")
 
-[node name="TurtlePathDiveFollow" type="PathFollow2D" parent="TurtlePath2" unique_id=107281901]
-rotation = 3.1415927
-script = ExtResource("3_ckaj2")
-speed = 0.1
+[node name="Turtle" parent="TurtleRow/TurtlePlatformArea2" unique_id=1769632190 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
 
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathDiveFollow" unique_id=196688750]
-collision_layer = 4
-gravity_point = true
+[node name="Turtle2" parent="TurtleRow/TurtlePlatformArea2" unique_id=675244787 instance=ExtResource("9_dq5qq")]
 
-[node name="Turtle" parent="TurtlePath2/TurtlePathDiveFollow/PlatformArea" unique_id=442323050 instance=ExtResource("9_dq5qq")]
+[node name="Turtle3" parent="TurtleRow/TurtlePlatformArea2" unique_id=52479637 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
+
+[node name="TurtlePlatformArea3" type="Area2D" parent="TurtleRow" unique_id=205092992]
+position = Vector2(186, 96)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtlePlatformArea3" unique_id=950441862]
+shape = SubResource("RectangleShape2D_u0xxi")
+
+[node name="Turtle" parent="TurtleRow/TurtlePlatformArea3" unique_id=182088041 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
+
+[node name="Turtle2" parent="TurtleRow/TurtlePlatformArea3" unique_id=1960774604 instance=ExtResource("9_dq5qq")]
+
+[node name="Turtle3" parent="TurtleRow/TurtlePlatformArea3" unique_id=1892774011 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
+
+[node name="TurtlePlatformArea4" type="Area2D" parent="TurtleRow" unique_id=120027562]
+position = Vector2(22, 96)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtlePlatformArea4" unique_id=606045411]
+shape = SubResource("RectangleShape2D_u0xxi")
+
+[node name="Turtle" parent="TurtleRow/TurtlePlatformArea4" unique_id=870958087 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
+
+[node name="Turtle2" parent="TurtleRow/TurtlePlatformArea4" unique_id=317719363 instance=ExtResource("9_dq5qq")]
+
+[node name="Turtle3" parent="TurtleRow/TurtlePlatformArea4" unique_id=1378583231 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
+
+[node name="TurtleDivePlatformArea" type="Area2D" parent="TurtleRow" unique_id=1419970967]
+position = Vector2(350, 96)
+script = ExtResource("11_g2y7n")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtleDivePlatformArea" unique_id=2103359876]
+shape = SubResource("RectangleShape2D_u0xxi")
+
+[node name="Turtle" parent="TurtleRow/TurtleDivePlatformArea" unique_id=1970946759 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
 autoplay = "dive"
 
-[node name="Turtle2" parent="TurtlePath2/TurtlePathDiveFollow/PlatformArea" unique_id=1529476528 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
+[node name="Turtle2" parent="TurtleRow/TurtleDivePlatformArea" unique_id=2007015631 instance=ExtResource("9_dq5qq")]
 autoplay = "dive"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathDiveFollow/PlatformArea" unique_id=579031749]
-position = Vector2(-8.090668, 2.2888184e-05)
+[node name="Turtle3" parent="TurtleRow/TurtleDivePlatformArea" unique_id=1178426346 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
+autoplay = "dive"
+
+[node name="TurtleDivePlatformArea2" type="Area2D" parent="TurtleRow" unique_id=577096102]
+position = Vector2(101, 96)
+script = ExtResource("11_g2y7n")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow/TurtleDivePlatformArea2" unique_id=1159367226]
+shape = SubResource("RectangleShape2D_u0xxi")
+
+[node name="Turtle" parent="TurtleRow/TurtleDivePlatformArea2" unique_id=889936142 instance=ExtResource("9_dq5qq")]
+position = Vector2(-16, 0)
+autoplay = "dive"
+
+[node name="Turtle2" parent="TurtleRow/TurtleDivePlatformArea2" unique_id=123212793 instance=ExtResource("9_dq5qq")]
+autoplay = "dive"
+
+[node name="Turtle3" parent="TurtleRow/TurtleDivePlatformArea2" unique_id=322190027 instance=ExtResource("9_dq5qq")]
+position = Vector2(16, 0)
+autoplay = "dive"
+
+[node name="LogRow" type="Node2D" parent="." unique_id=666188595]
+
+[node name="LogPlatformArea" type="Area2D" parent="LogRow" unique_id=1080434313]
+position = Vector2(-39, 80)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+initial_position = Vector2(-39, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow/LogPlatformArea" unique_id=332618223]
+shape = SubResource("RectangleShape2D_j8lqk")
+
+[node name="Log1" parent="LogRow/LogPlatformArea" unique_id=557158107 instance=ExtResource("10_to23j")]
+
+[node name="LogPlatformArea2" type="Area2D" parent="LogRow" unique_id=344492067]
+position = Vector2(47, 80)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+initial_position = Vector2(-39, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow/LogPlatformArea2" unique_id=1716783226]
+shape = SubResource("RectangleShape2D_j8lqk")
+
+[node name="Log1" parent="LogRow/LogPlatformArea2" unique_id=1668320557 instance=ExtResource("10_to23j")]
+
+[node name="LogPlatformArea3" type="Area2D" parent="LogRow" unique_id=354619854]
+position = Vector2(137, 80)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+initial_position = Vector2(-39, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow/LogPlatformArea3" unique_id=2057770392]
+shape = SubResource("RectangleShape2D_j8lqk")
+
+[node name="Log1" parent="LogRow/LogPlatformArea3" unique_id=1058840354 instance=ExtResource("10_to23j")]
+
+[node name="LogPlatformArea4" type="Area2D" parent="LogRow" unique_id=1087605902]
+position = Vector2(229, 80)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+initial_position = Vector2(-39, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow/LogPlatformArea4" unique_id=1944764050]
+shape = SubResource("RectangleShape2D_j8lqk")
+
+[node name="Log1" parent="LogRow/LogPlatformArea4" unique_id=1491133604 instance=ExtResource("10_to23j")]
+
+[node name="LogRow2" type="Node2D" parent="." unique_id=1863321375]
+
+[node name="LogPlatformArea5" type="Area2D" parent="LogRow2" unique_id=1111302591]
+position = Vector2(-71, 64)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-71, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow2/LogPlatformArea5" unique_id=1838875084]
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_g2y7n")
 
-[node name="TurtlePathFollow3" type="PathFollow2D" parent="TurtlePath2" unique_id=1084463061]
-position = Vector2(-212.12784, 0)
-rotation = 3.1415927
-progress = 212.128
-script = ExtResource("3_ckaj2")
-speed = 0.1
+[node name="Log3" parent="LogRow2/LogPlatformArea5" unique_id=1557458088 instance=ExtResource("11_vqvrl")]
 
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathFollow3" unique_id=812936022]
-collision_layer = 4
-gravity_point = true
+[node name="LogPlatformArea6" type="Area2D" parent="LogRow2" unique_id=516568847]
+position = Vector2(88, 64)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-71, 64)
 
-[node name="Turtle" parent="TurtlePath2/TurtlePathFollow3/PlatformArea" unique_id=107357371 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathFollow3/PlatformArea" unique_id=1279858600 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathFollow3/PlatformArea" unique_id=1313367548]
-position = Vector2(-8, 3.4332275e-05)
-shape = SubResource("RectangleShape2D_u0xxi")
-
-[node name="TurtlePathFollow5" type="PathFollow2D" parent="TurtlePath2" unique_id=610384070]
-position = Vector2(-375.88205, 0)
-rotation = 3.1415927
-progress = 375.872
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathFollow5" unique_id=1359463592]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath2/TurtlePathFollow5/PlatformArea" unique_id=1724752710 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathFollow5/PlatformArea" unique_id=991689868 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathFollow5/PlatformArea" unique_id=550622912]
-position = Vector2(-8, 3.4332275e-05)
-shape = SubResource("RectangleShape2D_u0xxi")
-
-[node name="TurtlePathFollow4" type="PathFollow2D" parent="TurtlePath2" unique_id=1990971994]
-position = Vector2(-266.4261, 0)
-rotation = 3.1415927
-progress = 266.4256
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathFollow4" unique_id=1400943006]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath2/TurtlePathFollow4/PlatformArea" unique_id=23506008 instance=ExtResource("9_dq5qq")]
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathFollow4/PlatformArea" unique_id=600120581 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathFollow4/PlatformArea" unique_id=1615251440]
-position = Vector2(-8, 3.4332275e-05)
-shape = SubResource("RectangleShape2D_u0xxi")
-
-[node name="TurtlePathDiveFollow2" type="PathFollow2D" parent="TurtlePath2" unique_id=1021881993]
-position = Vector2(-158.14299, 0)
-rotation = 3.1415927
-progress = 158.144
-script = ExtResource("3_ckaj2")
-speed = 0.1
-
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathDiveFollow2" unique_id=1838742426]
-collision_layer = 4
-gravity_point = true
-
-[node name="Turtle" parent="TurtlePath2/TurtlePathDiveFollow2/PlatformArea" unique_id=321202650 instance=ExtResource("9_dq5qq")]
-autoplay = "dive"
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathDiveFollow2/PlatformArea" unique_id=43161626 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-autoplay = "dive"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathDiveFollow2/PlatformArea" unique_id=1925501895]
-position = Vector2(-8.090668, 2.2888184e-05)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow2/LogPlatformArea6" unique_id=1580320863]
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_g2y7n")
 
-[node name="TurtlePathDiveFollow3" type="PathFollow2D" parent="TurtlePath2" unique_id=1097490416]
-position = Vector2(-318.9369, 0)
-rotation = 3.1415927
-progress = 318.9312
-script = ExtResource("3_ckaj2")
-speed = 0.1
+[node name="Log3" parent="LogRow2/LogPlatformArea6" unique_id=1484385699 instance=ExtResource("11_vqvrl")]
 
-[node name="PlatformArea" type="Area2D" parent="TurtlePath2/TurtlePathDiveFollow3" unique_id=1296754460]
-collision_layer = 4
-gravity_point = true
+[node name="LogPlatformArea7" type="Area2D" parent="LogRow2" unique_id=932220852]
+position = Vector2(246, 64)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-71, 64)
 
-[node name="Turtle" parent="TurtlePath2/TurtlePathDiveFollow3/PlatformArea" unique_id=1833404357 instance=ExtResource("9_dq5qq")]
-autoplay = "dive"
-
-[node name="Turtle2" parent="TurtlePath2/TurtlePathDiveFollow3/PlatformArea" unique_id=888350083 instance=ExtResource("9_dq5qq")]
-position = Vector2(-16, 1.3987644e-06)
-autoplay = "dive"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtlePath2/TurtlePathDiveFollow3/PlatformArea" unique_id=1343049112]
-position = Vector2(-8.090668, 2.2888184e-05)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow2/LogPlatformArea7" unique_id=409198298]
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_g2y7n")
 
-[node name="LogPath" type="Path2D" parent="." unique_id=506229798]
-position = Vector2(-24, 80)
-curve = SubResource("Curve2D_71axn")
+[node name="Log3" parent="LogRow2/LogPlatformArea7" unique_id=262867812 instance=ExtResource("11_vqvrl")]
 
-[node name="LogPathFollow" type="PathFollow2D" parent="LogPath" unique_id=366225569]
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtleRow2" type="Node2D" parent="." unique_id=542372697]
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow" unique_id=159076819]
-collision_layer = 4
-gravity_point = true
+[node name="TurtlePlatformArea" type="Area2D" parent="TurtleRow2" unique_id=366346250]
+position = Vector2(353, 48)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="Log1" parent="LogPath/LogPathFollow/PlatformArea" unique_id=1557458088 instance=ExtResource("10_to23j")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtlePlatformArea" unique_id=1278426339]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_md05f")
+
+[node name="Turtle" parent="TurtleRow2/TurtlePlatformArea" unique_id=1081728939 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow/PlatformArea" unique_id=1022803080]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtlePlatformArea" unique_id=1484228113 instance=ExtResource("9_dq5qq")]
 
-[node name="LogPathFollow2" type="PathFollow2D" parent="LogPath" unique_id=1559212510]
-position = Vector2(96.503456, 0)
-progress = 96.512
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtlePlatformArea2" type="Area2D" parent="TurtleRow2" unique_id=533328822]
+position = Vector2(278, 48)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow2" unique_id=1022693916]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtlePlatformArea2" unique_id=565474558]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_md05f")
 
-[node name="Log1" parent="LogPath/LogPathFollow2/PlatformArea" unique_id=1265923416 instance=ExtResource("10_to23j")]
+[node name="Turtle" parent="TurtleRow2/TurtlePlatformArea2" unique_id=1885624181 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow2/PlatformArea" unique_id=596962621]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtlePlatformArea2" unique_id=1408563395 instance=ExtResource("9_dq5qq")]
 
-[node name="LogPathFollow3" type="PathFollow2D" parent="LogPath" unique_id=886794654]
-position = Vector2(195.80751, 0)
-progress = 195.808
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtlePlatformArea3" type="Area2D" parent="TurtleRow2" unique_id=141727102]
+position = Vector2(130, 48)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow3" unique_id=322001572]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtlePlatformArea3" unique_id=970242308]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_md05f")
 
-[node name="Log1" parent="LogPath/LogPathFollow3/PlatformArea" unique_id=907062056 instance=ExtResource("10_to23j")]
+[node name="Turtle" parent="TurtleRow2/TurtlePlatformArea3" unique_id=1752867772 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow3/PlatformArea" unique_id=959420646]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtlePlatformArea3" unique_id=621999281 instance=ExtResource("9_dq5qq")]
 
-[node name="LogPathFollow4" type="PathFollow2D" parent="LogPath" unique_id=1018461064]
-position = Vector2(291.57803, 0)
-progress = 291.5776
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtlePlatformArea4" type="Area2D" parent="TurtleRow2" unique_id=1998119709]
+position = Vector2(55, 48)
+script = ExtResource("9_wt3ij")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow4" unique_id=1077131606]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtlePlatformArea4" unique_id=1696604474]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_md05f")
 
-[node name="Log1" parent="LogPath/LogPathFollow4/PlatformArea" unique_id=1357022577 instance=ExtResource("10_to23j")]
+[node name="Turtle" parent="TurtleRow2/TurtlePlatformArea4" unique_id=2010067753 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow4/PlatformArea" unique_id=1328043528]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtlePlatformArea4" unique_id=4158380 instance=ExtResource("9_dq5qq")]
 
-[node name="LogPathFollow5" type="PathFollow2D" parent="LogPath" unique_id=596638989]
-position = Vector2(383.218, 0)
-progress = 383.21762
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtleDivePlatformArea3" type="Area2D" parent="TurtleRow2" unique_id=487199049]
+position = Vector2(425, 48)
+script = ExtResource("11_g2y7n")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow5" unique_id=1531893570]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtleDivePlatformArea3" unique_id=1879042372]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_vcsyi")
 
-[node name="Log1" parent="LogPath/LogPathFollow5/PlatformArea" unique_id=610452138 instance=ExtResource("10_to23j")]
+[node name="Turtle" parent="TurtleRow2/TurtleDivePlatformArea3" unique_id=2133816597 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
+autoplay = "dive"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow5/PlatformArea" unique_id=1130580122]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtleDivePlatformArea3" unique_id=1039549860 instance=ExtResource("9_dq5qq")]
+autoplay = "dive"
 
-[node name="LogPathFollow6" type="PathFollow2D" parent="LogPath" unique_id=12014593]
-position = Vector2(383.218, 0)
-progress = 383.21762
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="TurtleDivePlatformArea4" type="Area2D" parent="TurtleRow2" unique_id=2139851604]
+position = Vector2(203, 48)
+script = ExtResource("11_g2y7n")
+speed = 50.0
+right_direction = false
+initial_position = Vector2(425, 48)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath/LogPathFollow6" unique_id=1719140702]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleRow2/TurtleDivePlatformArea4" unique_id=1515628857]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_vcsyi")
 
-[node name="Log1" parent="LogPath/LogPathFollow6/PlatformArea" unique_id=1787904569 instance=ExtResource("10_to23j")]
+[node name="Turtle" parent="TurtleRow2/TurtleDivePlatformArea4" unique_id=999723749 instance=ExtResource("9_dq5qq")]
 position = Vector2(-16, 0)
+autoplay = "dive"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath/LogPathFollow6/PlatformArea" unique_id=867302451]
-position = Vector2(-16, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3cx6b")
+[node name="Turtle2" parent="TurtleRow2/TurtleDivePlatformArea4" unique_id=1293852857 instance=ExtResource("9_dq5qq")]
+autoplay = "dive"
 
-[node name="LogPath2" type="Path2D" parent="." unique_id=271547702]
-position = Vector2(-24, 64)
-curve = SubResource("Curve2D_dahhg")
+[node name="LogRow3" type="Node2D" parent="." unique_id=429941056]
 
-[node name="LogPathFollow" type="PathFollow2D" parent="LogPath2" unique_id=1778876152]
-script = ExtResource("3_ckaj2")
-speed = 0.08
+[node name="LogPlatformArea" type="Area2D" parent="LogRow3" unique_id=457093603]
+position = Vector2(-55, 32)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-55, 32)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath2/LogPathFollow" unique_id=1333464160]
-collision_layer = 4
-gravity_point = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow3/LogPlatformArea" unique_id=12536860]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_ckaj2")
 
-[node name="Log3" parent="LogPath2/LogPathFollow/PlatformArea" unique_id=741600504 instance=ExtResource("11_vqvrl")]
-position = Vector2(-48, 0)
+[node name="Log2" parent="LogRow3/LogPlatformArea" unique_id=1495951910 instance=ExtResource("12_dlxis")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath2/LogPathFollow/PlatformArea" unique_id=742019628]
-position = Vector2(-40, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3so38")
+[node name="LogPlatformArea2" type="Area2D" parent="LogRow3" unique_id=643037184]
+position = Vector2(74, 32)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-55, 32)
 
-[node name="LogPathFollow2" type="PathFollow2D" parent="LogPath2" unique_id=2090531358]
-position = Vector2(144.48488, 0)
-progress = 144.4864
-script = ExtResource("3_ckaj2")
-speed = 0.08
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow3/LogPlatformArea2" unique_id=1250488555]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_ckaj2")
 
-[node name="PlatformArea" type="Area2D" parent="LogPath2/LogPathFollow2" unique_id=54114312]
-collision_layer = 4
-gravity_point = true
+[node name="Log2" parent="LogRow3/LogPlatformArea2" unique_id=2008280417 instance=ExtResource("12_dlxis")]
 
-[node name="Log3" parent="LogPath2/LogPathFollow2/PlatformArea" unique_id=910464898 instance=ExtResource("11_vqvrl")]
-position = Vector2(-48, 0)
+[node name="LogPlatformArea3" type="Area2D" parent="LogRow3" unique_id=2025175826]
+position = Vector2(196, 32)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-55, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath2/LogPathFollow2/PlatformArea" unique_id=388297448]
-position = Vector2(-40, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3so38")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow3/LogPlatformArea3" unique_id=1753189415]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_ckaj2")
 
-[node name="LogPathFollow3" type="PathFollow2D" parent="LogPath2" unique_id=58304544]
-position = Vector2(283.23856, 0)
-progress = 283.2384
-script = ExtResource("3_ckaj2")
-speed = 0.08
+[node name="Log2" parent="LogRow3/LogPlatformArea3" unique_id=1296546537 instance=ExtResource("12_dlxis")]
 
-[node name="PlatformArea" type="Area2D" parent="LogPath2/LogPathFollow3" unique_id=1153883704]
-collision_layer = 4
-gravity_point = true
+[node name="LogPlatformArea4" type="Area2D" parent="LogRow3" unique_id=479670300]
+position = Vector2(317, 32)
+script = ExtResource("9_wt3ij")
+speed = 60.0
+initial_position = Vector2(-55, 32)
 
-[node name="Log3" parent="LogPath2/LogPathFollow3/PlatformArea" unique_id=1848101108 instance=ExtResource("11_vqvrl")]
-position = Vector2(-48, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogRow3/LogPlatformArea4" unique_id=187082066]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_ckaj2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath2/LogPathFollow3/PlatformArea" unique_id=241013621]
-position = Vector2(-40, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3so38")
+[node name="Log2" parent="LogRow3/LogPlatformArea4" unique_id=1811584754 instance=ExtResource("12_dlxis")]
 
-[node name="LogPathFollow4" type="PathFollow2D" parent="LogPath2" unique_id=544676479]
-position = Vector2(427.62402, 0)
-progress = 427.6224
-script = ExtResource("3_ckaj2")
-speed = 0.08
+[node name="FlowerZone" type="Node2D" parent="." unique_id=1173604040]
 
-[node name="PlatformArea" type="Area2D" parent="LogPath2/LogPathFollow4" unique_id=892552770]
-collision_layer = 4
-gravity_point = true
+[node name="FlowerGround2" parent="FlowerZone" unique_id=722735142 instance=ExtResource("15_md05f")]
+position = Vector2(208, 16)
 
-[node name="Log3" parent="LogPath2/LogPathFollow4/PlatformArea" unique_id=617688302 instance=ExtResource("11_vqvrl")]
-position = Vector2(-48, 0)
+[node name="FlowerGround3" parent="FlowerZone" unique_id=1566971428 instance=ExtResource("15_md05f")]
+position = Vector2(176, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath2/LogPathFollow4/PlatformArea" unique_id=1754864649]
-position = Vector2(-40, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_3so38")
+[node name="FlowerGround4" parent="FlowerZone" unique_id=1195322537 instance=ExtResource("15_md05f")]
+position = Vector2(160, 16)
 
-[node name="LogPath3" type="Path2D" parent="." unique_id=426100151]
-position = Vector2(-24, 32)
-curve = SubResource("Curve2D_3so38")
+[node name="FlowerGround5" parent="FlowerZone" unique_id=1315491164 instance=ExtResource("15_md05f")]
+position = Vector2(144, 16)
 
-[node name="LogPathFollow" type="PathFollow2D" parent="LogPath3" unique_id=1383510366]
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="FlowerGround7" parent="FlowerZone" unique_id=1209548933 instance=ExtResource("15_md05f")]
+position = Vector2(112, 16)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath3/LogPathFollow" unique_id=571210851]
-collision_layer = 4
-gravity_point = true
+[node name="FlowerGround8" parent="FlowerZone" unique_id=1430170972 instance=ExtResource("15_md05f")]
+position = Vector2(96, 16)
 
-[node name="Log2" parent="LogPath3/LogPathFollow/PlatformArea" unique_id=1623962128 instance=ExtResource("12_dlxis")]
-position = Vector2(-32, 0)
+[node name="FlowerGround9" parent="FlowerZone" unique_id=455010984 instance=ExtResource("15_md05f")]
+position = Vector2(80, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath3/LogPathFollow/PlatformArea" unique_id=29196729]
-position = Vector2(-24, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_acvyw")
+[node name="FlowerGround11" parent="FlowerZone" unique_id=928198765 instance=ExtResource("15_md05f")]
+position = Vector2(48, 16)
 
-[node name="LogPathFollow2" type="PathFollow2D" parent="LogPath3" unique_id=2080756432]
-position = Vector2(128.19434, 0)
-progress = 128.15999
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="FlowerGround12" parent="FlowerZone" unique_id=1515573988 instance=ExtResource("15_md05f")]
+position = Vector2(32, 16)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath3/LogPathFollow2" unique_id=1529642641]
-collision_layer = 4
-gravity_point = true
+[node name="FlowerGround13" parent="FlowerZone" unique_id=1426155319 instance=ExtResource("15_md05f")]
+position = Vector2(16, 16)
 
-[node name="Log2" parent="LogPath3/LogPathFollow2/PlatformArea" unique_id=1817065703 instance=ExtResource("12_dlxis")]
-position = Vector2(-32, 0)
+[node name="FlowerGround15" parent="FlowerZone" unique_id=1670723649 instance=ExtResource("15_md05f")]
+position = Vector2(384, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath3/LogPathFollow2/PlatformArea" unique_id=103080735]
-position = Vector2(-24, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_acvyw")
+[node name="FlowerGround16" parent="FlowerZone" unique_id=1745894026 instance=ExtResource("15_md05f")]
+position = Vector2(368, 16)
 
-[node name="LogPathFollow3" type="PathFollow2D" parent="LogPath3" unique_id=1170369244]
-position = Vector2(259.9681, 0)
-progress = 259.968
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="FlowerGround17" parent="FlowerZone" unique_id=911039091 instance=ExtResource("15_md05f")]
+position = Vector2(352, 16)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath3/LogPathFollow3" unique_id=904318618]
-collision_layer = 4
-gravity_point = true
+[node name="FlowerGround18" parent="FlowerZone" unique_id=1959042646 instance=ExtResource("15_md05f")]
+position = Vector2(336, 16)
 
-[node name="Log2" parent="LogPath3/LogPathFollow3/PlatformArea" unique_id=1991154512 instance=ExtResource("12_dlxis")]
-position = Vector2(-32, 0)
+[node name="FlowerGround20" parent="FlowerZone" unique_id=943584773 instance=ExtResource("15_md05f")]
+position = Vector2(304, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath3/LogPathFollow3/PlatformArea" unique_id=1071511982]
-position = Vector2(-24, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_acvyw")
+[node name="FlowerGround21" parent="FlowerZone" unique_id=1557748816 instance=ExtResource("15_md05f")]
+position = Vector2(288, 16)
 
-[node name="LogPathFollow4" type="PathFollow2D" parent="LogPath3" unique_id=731699876]
-position = Vector2(384.77713, 0)
-progress = 384.768
-script = ExtResource("3_ckaj2")
-speed = 0.05
+[node name="FlowerGround22" parent="FlowerZone" unique_id=2052095310 instance=ExtResource("15_md05f")]
+position = Vector2(272, 16)
 
-[node name="PlatformArea" type="Area2D" parent="LogPath3/LogPathFollow4" unique_id=1518747928]
-collision_layer = 4
-gravity_point = true
+[node name="FlowerGround24" parent="FlowerZone" unique_id=1550501758 instance=ExtResource("15_md05f")]
+position = Vector2(240, 16)
 
-[node name="Log2" parent="LogPath3/LogPathFollow4/PlatformArea" unique_id=311545035 instance=ExtResource("12_dlxis")]
-position = Vector2(-32, 0)
+[node name="FlowerGround25" parent="FlowerZone" unique_id=1251535988 instance=ExtResource("15_md05f")]
+position = Vector2(224, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogPath3/LogPathFollow4/PlatformArea" unique_id=329997322]
-position = Vector2(-24, 2.2888184e-05)
-shape = SubResource("RectangleShape2D_acvyw")
+[node name="FlowerGround14" parent="FlowerZone" unique_id=1349647347 instance=ExtResource("15_md05f")]
+position = Vector2(0, 16)
+
+[node name="FlowerGround6" parent="FlowerZone" unique_id=1923977615 instance=ExtResource("15_md05f")]
+position = Vector2(208, 0)
+
+[node name="FlowerGround44" parent="FlowerZone" unique_id=47478159 instance=ExtResource("15_md05f")]
+position = Vector2(192, 0)
+
+[node name="FlowerGround10" parent="FlowerZone" unique_id=196245715 instance=ExtResource("15_md05f")]
+position = Vector2(176, 0)
+
+[node name="FlowerGround19" parent="FlowerZone" unique_id=1193581844 instance=ExtResource("15_md05f")]
+position = Vector2(160, 0)
+
+[node name="FlowerGround23" parent="FlowerZone" unique_id=151751959 instance=ExtResource("15_md05f")]
+position = Vector2(144, 0)
+
+[node name="FlowerGround43" parent="FlowerZone" unique_id=1699420838 instance=ExtResource("15_md05f")]
+position = Vector2(128, 0)
+
+[node name="FlowerGround26" parent="FlowerZone" unique_id=314016529 instance=ExtResource("15_md05f")]
+position = Vector2(112, 0)
+
+[node name="FlowerGround27" parent="FlowerZone" unique_id=1527502564 instance=ExtResource("15_md05f")]
+position = Vector2(96, 0)
+
+[node name="FlowerGround28" parent="FlowerZone" unique_id=277815705 instance=ExtResource("15_md05f")]
+position = Vector2(80, 0)
+
+[node name="FlowerGround42" parent="FlowerZone" unique_id=1123183619 instance=ExtResource("15_md05f")]
+position = Vector2(64, 0)
+
+[node name="FlowerGround29" parent="FlowerZone" unique_id=76098808 instance=ExtResource("15_md05f")]
+position = Vector2(48, 0)
+
+[node name="FlowerGround30" parent="FlowerZone" unique_id=904921545 instance=ExtResource("15_md05f")]
+position = Vector2(32, 0)
+
+[node name="FlowerGround31" parent="FlowerZone" unique_id=1432577680 instance=ExtResource("15_md05f")]
+position = Vector2(16, 0)
+
+[node name="FlowerGround32" parent="FlowerZone" unique_id=317860387 instance=ExtResource("15_md05f")]
+position = Vector2(384, 0)
+
+[node name="FlowerGround33" parent="FlowerZone" unique_id=2010818575 instance=ExtResource("15_md05f")]
+position = Vector2(368, 0)
+
+[node name="FlowerGround34" parent="FlowerZone" unique_id=1804973012 instance=ExtResource("15_md05f")]
+position = Vector2(352, 0)
+
+[node name="FlowerGround35" parent="FlowerZone" unique_id=1895186674 instance=ExtResource("15_md05f")]
+position = Vector2(336, 0)
+
+[node name="FlowerGround46" parent="FlowerZone" unique_id=113993992 instance=ExtResource("15_md05f")]
+position = Vector2(320, 0)
+
+[node name="FlowerGround36" parent="FlowerZone" unique_id=501157917 instance=ExtResource("15_md05f")]
+position = Vector2(304, 0)
+
+[node name="FlowerGround37" parent="FlowerZone" unique_id=353570631 instance=ExtResource("15_md05f")]
+position = Vector2(288, 0)
+
+[node name="FlowerGround38" parent="FlowerZone" unique_id=1289512317 instance=ExtResource("15_md05f")]
+position = Vector2(272, 0)
+
+[node name="FlowerGround45" parent="FlowerZone" unique_id=477543553 instance=ExtResource("15_md05f")]
+position = Vector2(256, 0)
+
+[node name="FlowerGround39" parent="FlowerZone" unique_id=1558028074 instance=ExtResource("15_md05f")]
+position = Vector2(240, 0)
+
+[node name="FlowerGround40" parent="FlowerZone" unique_id=1212266810 instance=ExtResource("15_md05f")]
+position = Vector2(224, 0)
+
+[node name="FlowerGround41" parent="FlowerZone" unique_id=753205495 instance=ExtResource("15_md05f")]
+
+[node name="ScoreArea" type="Area2D" parent="." unique_id=625974146]
+position = Vector2(192, 16)
+script = ExtResource("16_vcsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea" unique_id=208617995]
+shape = SubResource("RectangleShape2D_doyxy")
+
+[node name="EndFrog" type="Sprite2D" parent="ScoreArea" unique_id=2139222942]
+visible = false
+texture = ExtResource("17_doyxy")
 
 [connection signal="body_entered" from="Water" to="Frog" method="_on_kill_area_body_entered"]
 [connection signal="body_exited" from="Water" to="Frog" method="_on_kill_area_body_exited"]
@@ -1012,57 +965,50 @@ shape = SubResource("RectangleShape2D_acvyw")
 [connection signal="body_exited" from="TruckPath1/TruckPathFollow/KillArea" to="Frog" method="_on_kill_area_body_exited"]
 [connection signal="body_entered" from="TruckPath1/TruckPathFollow2/KillArea" to="Frog" method="_on_kill_area_body_entered"]
 [connection signal="body_exited" from="TruckPath1/TruckPathFollow2/KillArea" to="Frog" method="_on_kill_area_body_exited"]
-[connection signal="body_entered" from="TurtlePath/TurtlePathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath/TurtlePathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath/TurtlePathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath/TurtlePathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath/TurtlePathDiveFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath/TurtlePathDiveFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath/TurtlePathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath/TurtlePathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath/TurtlePathDiveFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath/TurtlePathDiveFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathDiveFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathDiveFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathFollow5/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathFollow5/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathDiveFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathDiveFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_entered" from="TurtlePath2/TurtlePathDiveFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_exited" from="TurtlePath2/TurtlePathDiveFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../TurtlePath/TurtlePathDiveFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow5/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow5/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath/LogPathFollow6/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath/LogPathFollow6/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath2/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath2/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath2/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath2/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath2/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath2/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath2/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath2/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath2/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath3/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath3/LogPathFollow/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath3/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath3/LogPathFollow2/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath3/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath3/LogPathFollow3/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_entered" from="LogPath3/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_entered" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
-[connection signal="body_exited" from="LogPath3/LogPathFollow4/PlatformArea" to="Frog" method="_on_platform_area_body_exited" binds= [NodePath("../LogPath3/LogPathFollow/PlatformArea")]]
+[connection signal="platform_entered" from="TurtleRow/TurtlePlatformArea" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtlePlatformArea" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow/TurtlePlatformArea2" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtlePlatformArea2" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow/TurtlePlatformArea3" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtlePlatformArea3" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow/TurtlePlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtlePlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow/TurtleDivePlatformArea" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtleDivePlatformArea" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow/TurtleDivePlatformArea2" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow/TurtleDivePlatformArea2" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow/LogPlatformArea" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow/LogPlatformArea" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow/LogPlatformArea2" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow/LogPlatformArea2" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow/LogPlatformArea3" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow/LogPlatformArea3" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow2/LogPlatformArea5" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow2/LogPlatformArea5" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow2/LogPlatformArea6" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow2/LogPlatformArea6" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow2/LogPlatformArea7" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow2/LogPlatformArea7" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtlePlatformArea" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtlePlatformArea" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtlePlatformArea2" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtlePlatformArea2" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtlePlatformArea3" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtlePlatformArea3" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtlePlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtlePlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtleDivePlatformArea3" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtleDivePlatformArea3" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="TurtleRow2/TurtleDivePlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="TurtleRow2/TurtleDivePlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow3/LogPlatformArea" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow3/LogPlatformArea" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow3/LogPlatformArea2" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow3/LogPlatformArea2" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow3/LogPlatformArea3" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow3/LogPlatformArea3" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="platform_entered" from="LogRow3/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
+[connection signal="platform_exited" from="LogRow3/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
+[connection signal="score" from="ScoreArea" to="Frog" method="_on_score_area_score"]
