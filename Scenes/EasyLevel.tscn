@@ -941,6 +941,50 @@ shape = SubResource("RectangleShape2D_doyxy")
 visible = false
 texture = ExtResource("17_doyxy")
 
+[node name="ScoreArea2" type="Area2D" parent="." unique_id=1344141472]
+position = Vector2(128, 16)
+script = ExtResource("16_vcsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea2" unique_id=2112144547]
+shape = SubResource("RectangleShape2D_doyxy")
+
+[node name="EndFrog" type="Sprite2D" parent="ScoreArea2" unique_id=1330909566]
+visible = false
+texture = ExtResource("17_doyxy")
+
+[node name="ScoreArea3" type="Area2D" parent="." unique_id=871201655]
+position = Vector2(64, 16)
+script = ExtResource("16_vcsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea3" unique_id=1264293362]
+shape = SubResource("RectangleShape2D_doyxy")
+
+[node name="EndFrog" type="Sprite2D" parent="ScoreArea3" unique_id=1779570598]
+visible = false
+texture = ExtResource("17_doyxy")
+
+[node name="ScoreArea4" type="Area2D" parent="." unique_id=1234600245]
+position = Vector2(256, 16)
+script = ExtResource("16_vcsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea4" unique_id=1407907500]
+shape = SubResource("RectangleShape2D_doyxy")
+
+[node name="EndFrog" type="Sprite2D" parent="ScoreArea4" unique_id=375258575]
+visible = false
+texture = ExtResource("17_doyxy")
+
+[node name="ScoreArea5" type="Area2D" parent="." unique_id=221729252]
+position = Vector2(320, 16)
+script = ExtResource("16_vcsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea5" unique_id=1204570941]
+shape = SubResource("RectangleShape2D_doyxy")
+
+[node name="EndFrog" type="Sprite2D" parent="ScoreArea5" unique_id=553358856]
+visible = false
+texture = ExtResource("17_doyxy")
+
 [connection signal="body_entered" from="Water" to="Frog" method="_on_kill_area_body_entered"]
 [connection signal="body_exited" from="Water" to="Frog" method="_on_kill_area_body_exited"]
 [connection signal="body_entered" from="TractorPath/TractorPathFollow/KillArea" to="Frog" method="_on_kill_area_body_entered"]
@@ -1012,3 +1056,7 @@ texture = ExtResource("17_doyxy")
 [connection signal="platform_entered" from="LogRow3/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_entered"]
 [connection signal="platform_exited" from="LogRow3/LogPlatformArea4" to="Frog" method="_on_platform_area_platform_exited"]
 [connection signal="score" from="ScoreArea" to="Frog" method="_on_score_area_score"]
+[connection signal="score" from="ScoreArea2" to="Frog" method="_on_score_area_score"]
+[connection signal="score" from="ScoreArea3" to="Frog" method="_on_score_area_score"]
+[connection signal="score" from="ScoreArea4" to="Frog" method="_on_score_area_score"]
+[connection signal="score" from="ScoreArea5" to="Frog" method="_on_score_area_score"]
