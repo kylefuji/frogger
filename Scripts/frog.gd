@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var move_distance = 16
 @export var speed:float = 100
 var moving:bool = false
+var paused:bool = false
 var playing_dying_animation:bool = false
 var safe_zone:bool = false
 var death_zone:bool = false
@@ -17,6 +18,8 @@ func _ready() -> void:
 	initial_position = position
 
 func _physics_process(delta: float) -> void:
+	if paused:
+		return
 	if death_zone and not safe_zone and not moving:
 		death()
 	elif moving:
@@ -51,6 +54,7 @@ func move(delta: float) -> void:
 		target_position = target_direction * move_distance + position
 		look_at(target_position)
 		moving = true
+		$MoveSound.play()
 	
 	elif moving:
 		var distance = global_position.distance_to(target_position)
@@ -87,6 +91,8 @@ func move(delta: float) -> void:
 		last_platform_pos = current_platform.global_position
 			
 func death() -> void:
+	if not $DeathSound.playing and not playing_dying_animation:
+		$DeathSound.play()
 	playing_dying_animation = true
 	moving = false
 	current_platform = null
@@ -135,8 +141,15 @@ func _on_platform_area_platform_exited(body: Node2D, platform: Area2D) -> void:
 
 
 func _on_score_area_score() -> void:
-	print("score")
+	$ScoreSound.play()
+	position = initial_position
+	current_platform = null
+	paused = true
 	moving = false
 	death_zone = false
 	safe_zone = false
-	position = initial_position
+	$Timer.start(1)
+
+
+func _on_timer_timeout() -> void:
+	paused = false

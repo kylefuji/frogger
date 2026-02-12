@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://dgio43r8ycrxk" path="res://Textures/frog_death0006.png" id="7_2ddaq"]
 [ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://Textures/frog0000.png" id="8_y28ed"]
 [ext_resource type="Texture2D" uid="uid://cp2cfsigleafg" path="res://Textures/frog0001.png" id="9_wuh7n"]
+[ext_resource type="AudioStream" uid="uid://slx4rw2erhv0" path="res://Audio/A_move.wav" id="11_7ogsk"]
+[ext_resource type="AudioStream" uid="uid://qo8asr5rynn4" path="res://Audio/A_soundtrack.wav" id="11_qq1nu"]
+[ext_resource type="AudioStream" uid="uid://b2yhmv0ekjdhr" path="res://Audio/A_death.wav" id="12_fluhp"]
+[ext_resource type="AudioStream" uid="uid://ch5hpvlvxq3f5" path="res://Audio/A_score.wav" id="13_fluhp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3xnh"]
 animations = [{
@@ -74,3 +78,20 @@ autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1458880667]
 shape = SubResource("RectangleShape2D_8r6kd")
+
+[node name="Soundtrack" type="AudioStreamPlayer2D" parent="." unique_id=95391155]
+stream = ExtResource("11_qq1nu")
+autoplay = true
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="." unique_id=45394024]
+stream = ExtResource("11_7ogsk")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=844480846]
+stream = ExtResource("12_fluhp")
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=1150240010]
+stream = ExtResource("13_fluhp")
+
+[node name="Timer" type="Timer" parent="." unique_id=822101581]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
