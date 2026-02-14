@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cfjs4dgla1tho"]
+
+[ext_resource type="Script" uid="uid://dxxnkbmr8rw6u" path="res://Scripts/frog_platform_area.gd" id="1_bqtjk"]
+[ext_resource type="PackedScene" uid="uid://cdfw6wudide1a" path="res://Sprites/log_3.tscn" id="2_x8ak8"]
+[ext_resource type="Script" uid="uid://b580hem6hrjal" path="res://Scripts/blue_frog.gd" id="3_abmde"]
+[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://Textures/frog_blue0000.png" id="4_rg0rw"]
+[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://Textures/frog_blue0001.png" id="5_q6g6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8y4"]
+size = Vector2(96, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nr8y4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rg0rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q6g6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doyxy"]
+size = Vector2(16, 16)
+
+[node name="FrogLogPlatformArea" type="Area2D" unique_id=1781274477]
+script = ExtResource("1_bqtjk")
+speed = 40.0
+initial_position = Vector2(-71, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2057991288]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_nr8y4")
+
+[node name="Log3" parent="." unique_id=1557458088 instance=ExtResource("2_x8ak8")]
+
+[node name="BlueFrog" type="Area2D" parent="." unique_id=1634285755]
+position = Vector2(-16, 0)
+script = ExtResource("3_abmde")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BlueFrog" unique_id=2129244909]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_nr8y4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlueFrog" unique_id=1308803210]
+shape = SubResource("RectangleShape2D_doyxy")

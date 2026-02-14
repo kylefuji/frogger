@@ -14,6 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://qo8asr5rynn4" path="res://Audio/A_soundtrack.wav" id="11_qq1nu"]
 [ext_resource type="AudioStream" uid="uid://b2yhmv0ekjdhr" path="res://Audio/A_death.wav" id="12_fluhp"]
 [ext_resource type="AudioStream" uid="uid://ch5hpvlvxq3f5" path="res://Audio/A_score.wav" id="13_fluhp"]
+[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://Textures/frog_blue0000.png" id="15_2ddaq"]
+[ext_resource type="AudioStream" uid="uid://16nds437g00j" path="res://Audio/A_extra_score.wav" id="15_y28ed"]
+[ext_resource type="AudioStream" uid="uid://cikwbypjeex6n" path="res://Audio/A_frog_pick_up.wav" id="16_wuh7n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3xnh"]
 animations = [{
@@ -73,7 +76,7 @@ script = ExtResource("1_8806n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1292501982]
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_x3xnh")
-animation = &"death"
+animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1458880667]
@@ -92,6 +95,17 @@ stream = ExtResource("12_fluhp")
 [node name="ScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=1150240010]
 stream = ExtResource("13_fluhp")
 
-[node name="Timer" type="Timer" parent="." unique_id=822101581]
+[node name="ExtraScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=366610835]
+stream = ExtResource("15_y28ed")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="FrogPickUpSound" type="AudioStreamPlayer2D" parent="." unique_id=118190878]
+stream = ExtResource("16_wuh7n")
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=822101581]
+
+[node name="FrogBlue" type="Sprite2D" parent="." unique_id=930669140]
+visible = false
+rotation = 1.5707964
+texture = ExtResource("15_2ddaq")
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_timer_timeout"]

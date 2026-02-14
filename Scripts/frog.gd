@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+signal updateScore()
+signal updateLives()
+
 @export var move_distance = 16
 @export var speed:float = 100
 var moving:bool = false
@@ -11,11 +14,33 @@ var target_direction:Vector2 = Vector2.ZERO
 var target_position: Vector2 = Vector2.ZERO
 var initial_position: Vector2 = Vector2.ZERO
 var start_move_position: Vector2 = Vector2.ZERO
+var start_drag_position: Vector2 = Vector2.ZERO
 var current_platform:Area2D = null
 var last_platform_pos = null
+var row_count:int = 0
 
 func _ready() -> void:
 	initial_position = position
+	row_count = initial_position.y / 16
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not playing_dying_animation and not moving and not paused:
+		if event.is_pressed():
+			start_drag_position = event.position
+		else:
+			var distance:Vector2 = event.position - start_drag_position
+			if abs(distance.x) >= abs(distance.y):
+				if distance.x > 0: 
+					target_direction = Vector2.RIGHT
+				elif distance.x < 0:
+					target_direction = Vector2.LEFT
+			else:
+				if distance.y > 0:
+					target_direction = Vector2.DOWN
+				elif distance.y < 0:
+					target_direction = Vector2.UP
+			$AnimatedSprite2D.play("walk")
+			move(0)
 
 func _physics_process(delta: float) -> void:
 	if paused:
@@ -77,6 +102,10 @@ func move(delta: float) -> void:
 			target_position = Vector2.ZERO
 			moving = false
 			velocity = Vector2.ZERO
+			if position.y / 16 < row_count:
+				row_count = position.y / 16
+				Global.score += 10
+				updateScore.emit()
 			
 		if is_on_wall():
 			moving = false
@@ -92,7 +121,12 @@ func move(delta: float) -> void:
 			
 func death() -> void:
 	if not $DeathSound.playing and not playing_dying_animation:
+		Global.lives -= 1
+		updateLives.emit()
 		$DeathSound.play()
+	get_parent().stop_timer()
+	$FrogBlue.visible = false
+	Global.frog_on_player = false
 	playing_dying_animation = true
 	moving = false
 	current_platform = null
@@ -100,8 +134,11 @@ func death() -> void:
 	look_at(target_position)
 	$AnimatedSprite2D.play("death")
 	await $AnimatedSprite2D.animation_finished
+	if Global.lives > 0:
+		get_parent().set_timer(30)
 	playing_dying_animation = false
 	position = initial_position
+	row_count = initial_position.y / 16
 	death_zone = false
 	safe_zone = false
 	
@@ -141,15 +178,62 @@ func _on_platform_area_platform_exited(body: Node2D, platform: Area2D) -> void:
 
 
 func _on_score_area_score() -> void:
-	$ScoreSound.play()
+	get_parent().stop_timer()
+	$FrogBlue.visible = false
+	if Global.frog_on_player:
+		Global.score += 200
+		$ExtraScoreSound.play()
+	else:
+		$ScoreSound.play()
+	Global.frog_on_player = false
+	Global.score += 200
+	Global.score += get_parent().duration * 20
+	#print(Global.scores)
+	updateScore.emit()
 	position = initial_position
+	row_count = initial_position.y / 16
 	current_platform = null
 	paused = true
 	moving = false
 	death_zone = false
 	safe_zone = false
-	$Timer.start(1)
+	$RespawnTimer.start(1)
 
 
 func _on_timer_timeout() -> void:
+	if Global.scores == 5:
+		get_parent().reset()
+		Global.score += 1000
 	paused = false
+	get_parent().set_timer(30)
+	$RespawnTimer.stop()
+
+
+func _on_blue_frog_entered(body: Node2D, blue_frog: Area2D) -> void:
+	if body == self:
+		$FrogBlue.visible = true
+		$FrogPickUpSound.play()
+		blue_frog.hide_frog()
+		Global.frog_on_player = true
+
+
+func _on_score_area_extra_score() -> void:
+	Global.score += 200
+	get_parent().stop_timer()
+	$ExtraScoreSound.play()
+	$FrogBlue.visible = false
+	if Global.frog_on_player:
+		Global.score += 200
+	Global.frog_on_player = false
+	Global.score += 200
+	Global.score += get_parent().duration * 20
+	#print(Global.scores)
+	updateScore.emit()
+	position = initial_position
+	row_count = initial_position.y / 16
+	current_platform = null
+	paused = true
+	moving = false
+	death_zone = false
+	safe_zone = false
+	$RespawnTimer.start(1)
