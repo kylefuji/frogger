@@ -91,9 +91,12 @@ offset_right = 225.0
 offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_right = NodePath("../RestartButton")
-focus_neighbor_bottom = NodePath("../RestartButton")
-focus_next = NodePath("../RestartButton")
+focus_neighbor_left = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_right = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../PlayButton")
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -117,9 +120,9 @@ offset_right = 225.0
 offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_right = NodePath("../RestartButton")
-focus_neighbor_bottom = NodePath("../RestartButton")
-focus_next = NodePath("../RestartButton")
+focus_neighbor_left = NodePath("../RestartButton")
+focus_neighbor_top = NodePath("../RestartButton")
+focus_previous = NodePath("../RestartButton")
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -155,3 +158,7 @@ position = Vector2(128, 17)
 points = PackedVector2Array(0, 0, 128, 0, 128, 200, 0, 200)
 closed = true
 width = 3.0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

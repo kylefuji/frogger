@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dki338gkl82fa"]
 
+[ext_resource type="Script" uid="uid://bka5sk7dnl8f6" path="res://Scripts/level.gd" id="1_554e7"]
 [ext_resource type="Script" uid="uid://ddx5gt3s5nqu2" path="res://Scripts/game.gd" id="1_vvti0"]
 [ext_resource type="PackedScene" uid="uid://bl2hxioa8pelu" path="res://Prefabs/frog.tscn" id="2_jimsf"]
 [ext_resource type="PackedScene" uid="uid://cqpgaqe51ya8p" path="res://Sprites/flower_ground_1.tscn" id="3_0blb6"]
@@ -27,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b5o5o4nok6o17" path="res://Sprites/fly.tscn" id="23_8xou6"]
 [ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://Textures/frog0000.png" id="24_e2dca"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="25_ip6ku"]
+[ext_resource type="PackedScene" uid="uid://db0uc2nnelb26" path="res://Scenes/Menu.tscn" id="28_ctw2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
 size = Vector2(384, 94)
@@ -120,6 +122,7 @@ size = Vector2(8, 12)
 size = Vector2(16, 16)
 
 [node name="MediumLevel" type="Node2D" unique_id=942719916]
+script = ExtResource("1_554e7")
 
 [node name="Game" type="Node2D" parent="." unique_id=440480411]
 script = ExtResource("1_vvti0")
@@ -1192,6 +1195,9 @@ text = "Game Over"
 [node name="FlySpawnTimer" type="Timer" parent="Game" unique_id=1152485307]
 wait_time = 10.0
 
+[node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("28_ctw2e")]
+visible = false
+
 [connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
 [connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="body_entered" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_entered"]
@@ -1286,3 +1292,5 @@ wait_time = 10.0
 [connection signal="extra_score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_extra_score"]
 [connection signal="fly_spawn_timer" from="Game/ScoreZones/ScoreArea5" to="." method="_on_fly_spawn_timer"]
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
+[connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
+[connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]

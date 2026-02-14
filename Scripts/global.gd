@@ -47,7 +47,6 @@ func next_scene():
 		change_scene("medium")
 	
 func toggle_menu() -> void:
-	toggle_pause()
 	get_tree().current_scene.toggle_menu()
 
 func _input(event: InputEvent) -> void:

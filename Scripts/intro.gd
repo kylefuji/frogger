@@ -11,3 +11,5 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_cancel") or not $VideoStreamPlayer.is_playing():
 		Global.start_up = false
 		Global.change_scene("easy")
+		get_tree().paused = true
+		Global.is_paused = true

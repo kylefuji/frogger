@@ -1226,5 +1226,3 @@ wait_time = 10.0
 [connection signal="extra_score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_extra_score"]
 [connection signal="fly_spawn_timer" from="Game/ScoreZones/ScoreArea5" to="." method="_on_fly_spawn_timer"]
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
-[connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
-[connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]
