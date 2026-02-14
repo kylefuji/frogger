@@ -202,8 +202,8 @@ func _on_score_area_score() -> void:
 
 func _on_timer_timeout() -> void:
 	if Global.scores == 5:
-		get_parent().reset()
 		Global.score += 1000
+		Global.next_scene()
 	paused = false
 	get_parent().set_timer(30)
 	$RespawnTimer.stop()
@@ -237,3 +237,8 @@ func _on_score_area_extra_score() -> void:
 	death_zone = false
 	safe_zone = false
 	$RespawnTimer.start(1)
+
+
+func _on_bite_area_body_entered(body: Node2D) -> void:
+	if body == self:
+		death()
