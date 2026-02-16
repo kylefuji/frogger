@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bu7g0frkgg82i"]
 
-[ext_resource type="Texture2D" uid="uid://cs058auoyw2cn" path="res://Textures/turtle0000.png" id="1_i4cbw"]
-[ext_resource type="Texture2D" uid="uid://gapr8q4wg3j3" path="res://Textures/turtle0001.png" id="2_6odg1"]
-[ext_resource type="Texture2D" uid="uid://bs7lm1lu32oum" path="res://Textures/turtle0002.png" id="3_rgd3l"]
-[ext_resource type="Texture2D" uid="uid://clokf8kw8lwk2" path="res://Textures/turtle0003.png" id="4_jyn5a"]
-[ext_resource type="Texture2D" uid="uid://bvv2f0yibcd5m" path="res://Textures/turtle0004.png" id="5_isrsi"]
+[ext_resource type="Texture2D" uid="uid://cs058auoyw2cn" path="res://PNGs/turtle0000.png" id="1_i4cbw"]
+[ext_resource type="Texture2D" uid="uid://gapr8q4wg3j3" path="res://PNGs/turtle0001.png" id="2_6odg1"]
+[ext_resource type="Texture2D" uid="uid://bs7lm1lu32oum" path="res://PNGs/turtle0002.png" id="3_rgd3l"]
+[ext_resource type="Texture2D" uid="uid://clokf8kw8lwk2" path="res://PNGs/turtle0003.png" id="4_jyn5a"]
+[ext_resource type="Texture2D" uid="uid://bvv2f0yibcd5m" path="res://PNGs/turtle0004.png" id="5_isrsi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3xnh"]
 animations = [{

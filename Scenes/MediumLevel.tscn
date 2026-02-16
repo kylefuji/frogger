@@ -17,18 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://cdfw6wudide1a" path="res://Sprites/log_3.tscn" id="14_3oqni"]
 [ext_resource type="Script" uid="uid://dxxnkbmr8rw6u" path="res://Scripts/frog_platform_area.gd" id="15_77o2y"]
 [ext_resource type="Script" uid="uid://b580hem6hrjal" path="res://Scripts/blue_frog.gd" id="16_1pq8l"]
-[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://Textures/frog_blue0000.png" id="17_xhhn0"]
-[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://Textures/frog_blue0001.png" id="18_f0yp7"]
+[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://PNGs/frog_blue0000.png" id="17_xhhn0"]
+[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://PNGs/frog_blue0001.png" id="18_f0yp7"]
 [ext_resource type="PackedScene" uid="uid://dxxnrpxv4vnjf" path="res://Sprites/log_2.tscn" id="19_kr44v"]
-[ext_resource type="Texture2D" uid="uid://casyuyispbvny" path="res://Textures/crocodile0001.png" id="20_0blb6"]
+[ext_resource type="Texture2D" uid="uid://casyuyispbvny" path="res://PNGs/crocodile0001.png" id="20_0blb6"]
 [ext_resource type="PackedScene" uid="uid://cgnurhij7fa4" path="res://Sprites/flower_ground_2.tscn" id="20_nljxb"]
-[ext_resource type="Texture2D" uid="uid://dee4tj1gqmxu5" path="res://Textures/crocodile0000.png" id="21_ctw2e"]
+[ext_resource type="Texture2D" uid="uid://dee4tj1gqmxu5" path="res://PNGs/crocodile0000.png" id="21_ctw2e"]
 [ext_resource type="Script" uid="uid://des4m3aochcxf" path="res://Scripts/score_area.gd" id="21_p8jkw"]
-[ext_resource type="Texture2D" uid="uid://bokb1l4tt7cat" path="res://Textures/end_frog.png" id="22_r2h3o"]
+[ext_resource type="Texture2D" uid="uid://bokb1l4tt7cat" path="res://PNGs/end_frog.png" id="22_r2h3o"]
 [ext_resource type="PackedScene" uid="uid://b5o5o4nok6o17" path="res://Sprites/fly.tscn" id="23_8xou6"]
-[ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://Textures/frog0000.png" id="24_e2dca"]
+[ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://PNGs/frog0000.png" id="24_e2dca"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="25_ip6ku"]
 [ext_resource type="PackedScene" uid="uid://db0uc2nnelb26" path="res://Scenes/Menu.tscn" id="28_ctw2e"]
+[ext_resource type="Texture2D" uid="uid://c6j7vnebfh8gt" path="res://PNGs/menu_icon.png" id="30_pg335"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
 size = Vector2(384, 94)
@@ -120,6 +121,18 @@ size = Vector2(8, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpyrv"]
 size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6tpq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6m4pj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fuqq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed4rl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6htcm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_270w2"]
 
 [node name="MediumLevel" type="Node2D" unique_id=942719916]
 script = ExtResource("1_554e7")
@@ -1195,9 +1208,22 @@ text = "Game Over"
 [node name="FlySpawnTimer" type="Timer" parent="Game" unique_id=1152485307]
 wait_time = 10.0
 
+[node name="MenuButton" type="Button" parent="Game" unique_id=2100691634]
+offset_left = 346.0
+offset_right = 370.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t6tpq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6m4pj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0fuqq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ed4rl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6htcm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_270w2")
+icon = ExtResource("30_pg335")
+
 [node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("28_ctw2e")]
 visible = false
 
+[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
 [connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
 [connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="body_entered" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_entered"]
@@ -1292,5 +1318,6 @@ visible = false
 [connection signal="extra_score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_extra_score"]
 [connection signal="fly_spawn_timer" from="Game/ScoreZones/ScoreArea5" to="." method="_on_fly_spawn_timer"]
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
+[connection signal="pressed" from="Game/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
 [connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]

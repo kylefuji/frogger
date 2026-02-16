@@ -11,27 +11,29 @@ func _ready() -> void:
 	$LevelTimer.timeout.connect(_on_level_timeout)
 	$FlySpawnTimer.timeout.connect(_on_fly_spawn_timeout)
 	set_timer(30)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func reset() -> void:
 	Global.scores = 0
+	$Frog.reset()
 	for i in 5:
 		$ScoreZones.get_node("ScoreArea" + str(i+1)).reset()
+	_update_lives()
+	_update_score()
 		
 func _update_score() -> void:
 	$ScoreText.text = str(Global.score)
 
 func _update_lives() -> void:
+	for i in Global.lives:
+		$Lives.get_node("FrogLife%d" % (i+1)).visible = true
 	if Global.lives < 0:
 		$Frog.paused = true
-		$"GameOverText".visible = true
+		$GameOverText.visible = true
 		stop_timer()
-		
-	elif Global.lives < 5:
+	else:
+		$Frog.paused = false
+		$GameOverText.visible = false
+		set_timer(30)
 		for missing in range(5, Global.lives, -1):
 			$Lives.get_node("FrogLife%d" % missing).visible = false
 			
@@ -70,3 +72,7 @@ func _on_fly_spawn_timer() -> void:
 func _on_fly_spawn_timeout() -> void:
 	Global.fly_can_show = true
 	$FlySpawnTimer.stop()
+
+
+func _on_frog_reset_level() -> void:
+	reset()

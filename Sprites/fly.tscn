@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5o5o4nok6o17"]
 
-[ext_resource type="Texture2D" uid="uid://dl088rxdygnt7" path="res://Textures/fly.png" id="1_o8lte"]
+[ext_resource type="Texture2D" uid="uid://dl088rxdygnt7" path="res://PNGs/fly.png" id="1_o8lte"]
 
 [node name="Fly" type="Sprite2D" unique_id=1551634987]
 texture = ExtResource("1_o8lte")

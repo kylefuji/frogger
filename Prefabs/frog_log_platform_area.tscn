@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dxxnkbmr8rw6u" path="res://Scripts/frog_platform_area.gd" id="1_bqtjk"]
 [ext_resource type="PackedScene" uid="uid://cdfw6wudide1a" path="res://Sprites/log_3.tscn" id="2_x8ak8"]
 [ext_resource type="Script" uid="uid://b580hem6hrjal" path="res://Scripts/blue_frog.gd" id="3_abmde"]
-[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://Textures/frog_blue0000.png" id="4_rg0rw"]
-[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://Textures/frog_blue0001.png" id="5_q6g6y"]
+[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://PNGs/frog_blue0000.png" id="4_rg0rw"]
+[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://PNGs/frog_blue0001.png" id="5_q6g6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8y4"]
 size = Vector2(96, 16)

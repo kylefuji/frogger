@@ -20,13 +20,14 @@
 [ext_resource type="Script" uid="uid://dxxnkbmr8rw6u" path="res://Scripts/frog_platform_area.gd" id="15_t4xlw"]
 [ext_resource type="Script" uid="uid://b580hem6hrjal" path="res://Scripts/blue_frog.gd" id="16_nr8y4"]
 [ext_resource type="Script" uid="uid://des4m3aochcxf" path="res://Scripts/score_area.gd" id="16_vcsyi"]
-[ext_resource type="Texture2D" uid="uid://bokb1l4tt7cat" path="res://Textures/end_frog.png" id="17_doyxy"]
-[ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://Textures/frog0000.png" id="18_b2wdt"]
+[ext_resource type="Texture2D" uid="uid://bokb1l4tt7cat" path="res://PNGs/end_frog.png" id="17_doyxy"]
+[ext_resource type="Texture2D" uid="uid://beb037s6ybkc6" path="res://PNGs/frog0000.png" id="18_b2wdt"]
 [ext_resource type="PackedScene" uid="uid://b5o5o4nok6o17" path="res://Sprites/fly.tscn" id="19_o7670"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="20_dq5qq"]
-[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://Textures/frog_blue0000.png" id="22_dlxis"]
-[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://Textures/frog_blue0001.png" id="23_t4xlw"]
+[ext_resource type="Texture2D" uid="uid://dojcqsyxemal4" path="res://PNGs/frog_blue0000.png" id="22_dlxis"]
+[ext_resource type="Texture2D" uid="uid://de0uy43fktt8d" path="res://PNGs/frog_blue0001.png" id="23_t4xlw"]
 [ext_resource type="PackedScene" uid="uid://db0uc2nnelb26" path="res://Scenes/Menu.tscn" id="26_dpyrv"]
+[ext_resource type="Texture2D" uid="uid://c6j7vnebfh8gt" path="res://PNGs/menu_icon.png" id="27_ln5in"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
 size = Vector2(384, 94)
@@ -99,11 +100,22 @@ size = Vector2(64, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpyrv"]
 size = Vector2(16, 16)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8dl3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln5in"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ryix"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfvr6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6v8n8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3o5w"]
+
 [node name="EasyLevel" type="Node2D" unique_id=942719916]
 script = ExtResource("1_to23j")
 
 [node name="Game" type="Node2D" parent="." unique_id=194355451]
-visible = false
 script = ExtResource("2_vtjk7")
 
 [node name="Frog" parent="Game" unique_id=454979244 instance=ExtResource("1_u0xxi")]
@@ -1135,8 +1147,22 @@ text = "Game Over"
 [node name="FlySpawnTimer" type="Timer" parent="Game" unique_id=1152485307]
 wait_time = 10.0
 
-[node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("26_dpyrv")]
+[node name="MenuButton" type="Button" parent="Game" unique_id=2081683618]
+offset_left = 346.0
+offset_right = 370.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x8dl3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ln5in")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0ryix")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_mfvr6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6v8n8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y3o5w")
+icon = ExtResource("27_ln5in")
 
+[node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("26_dpyrv")]
+visible = false
+
+[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
 [connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
 [connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="body_entered" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_entered"]
@@ -1226,5 +1252,6 @@ wait_time = 10.0
 [connection signal="extra_score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_extra_score"]
 [connection signal="fly_spawn_timer" from="Game/ScoreZones/ScoreArea5" to="." method="_on_fly_spawn_timer"]
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
+[connection signal="pressed" from="Game/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
 [connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]

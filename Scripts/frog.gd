@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal updateScore()
 signal updateLives()
+signal resetLevel()
 
 @export var move_distance = 16
 @export var speed:float = 100
@@ -134,7 +135,7 @@ func death() -> void:
 	look_at(target_position)
 	$AnimatedSprite2D.play("death")
 	await $AnimatedSprite2D.animation_finished
-	if Global.lives > 0:
+	if Global.lives >= 0:
 		get_parent().set_timer(30)
 	playing_dying_animation = false
 	position = initial_position
@@ -142,6 +143,16 @@ func death() -> void:
 	death_zone = false
 	safe_zone = false
 	
+func reset():
+	get_parent().stop_timer()
+	$FrogBlue.visible = false
+	Global.frog_on_player = false
+	moving = false
+	current_platform = null
+	position = initial_position
+	row_count = initial_position.y / 16
+	death_zone = false
+	safe_zone = false
 
 
 func _on_kill_area_body_entered(body: Node2D) -> void:
@@ -188,7 +199,6 @@ func _on_score_area_score() -> void:
 	Global.frog_on_player = false
 	Global.score += 200
 	Global.score += get_parent().duration * 20
-	#print(Global.scores)
 	updateScore.emit()
 	position = initial_position
 	row_count = initial_position.y / 16
@@ -203,7 +213,10 @@ func _on_score_area_score() -> void:
 func _on_timer_timeout() -> void:
 	if Global.scores == 5:
 		Global.score += 1000
-		Global.next_scene()
+		if get_tree().current_scene != Global.end_level:
+			Global.next_scene()
+		else:
+			resetLevel.emit()
 	paused = false
 	get_parent().set_timer(30)
 	$RespawnTimer.stop()
@@ -227,7 +240,6 @@ func _on_score_area_extra_score() -> void:
 	Global.frog_on_player = false
 	Global.score += 200
 	Global.score += get_parent().duration * 20
-	#print(Global.scores)
 	updateScore.emit()
 	position = initial_position
 	row_count = initial_position.y / 16

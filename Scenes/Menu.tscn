@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://db0uc2nnelb26"]
 
 [ext_resource type="Script" uid="uid://weqcwb1gpayk" path="res://Scripts/menu.gd" id="1_6pedr"]
-[ext_resource type="Texture2D" uid="uid://du4h0y624els1" path="res://Textures/open_e.png" id="1_ma218"]
-[ext_resource type="Texture2D" uid="uid://dekmqq0s66gcd" path="res://Textures/open_f.png" id="2_idohh"]
-[ext_resource type="Texture2D" uid="uid://cldicnpq8ge0w" path="res://Textures/open_g.png" id="3_wfhf6"]
-[ext_resource type="Texture2D" uid="uid://bo8llqn2b5jif" path="res://Textures/open_o.png" id="4_3jcrr"]
-[ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://Textures/open_r.png" id="5_aobxe"]
+[ext_resource type="Texture2D" uid="uid://du4h0y624els1" path="res://PNGs/open_e.png" id="1_ma218"]
+[ext_resource type="Texture2D" uid="uid://dekmqq0s66gcd" path="res://PNGs/open_f.png" id="2_idohh"]
+[ext_resource type="Texture2D" uid="uid://cldicnpq8ge0w" path="res://PNGs/open_g.png" id="3_wfhf6"]
+[ext_resource type="Texture2D" uid="uid://bo8llqn2b5jif" path="res://PNGs/open_o.png" id="4_3jcrr"]
+[ext_resource type="Texture2D" uid="uid://i0qh81dqwmnq" path="res://PNGs/open_r.png" id="5_aobxe"]
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="6_idohh"]
+[ext_resource type="Texture2D" uid="uid://dms32e1qr3mgg" path="res://PNGs/sound_on_icon.png" id="8_3jcrr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idohh"]
 bg_color = Color(0, 0, 0, 1)
@@ -18,6 +19,22 @@ bg_color = Color(1, 1, 1, 1)
 bg_color = Color(0.60933006, 0.6093301, 0.60933006, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aobxe"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byewe"]
+content_margin_left = 4.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab40c"]
+content_margin_left = 4.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjh0l"]
+content_margin_left = 4.0
+bg_color = Color(0.60784316, 0.60784316, 0.60784316, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qki4b"]
+content_margin_left = 4.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="Menu" type="Node2D" unique_id=1859447130]
@@ -53,6 +70,25 @@ texture = ExtResource("5_aobxe")
 position = Vector2(48, 0)
 texture = ExtResource("5_aobxe")
 
+[node name="HighScore" type="RichTextLabel" parent="." unique_id=820376978]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 147.0
+offset_top = 55.0
+offset_right = 237.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 20)
+theme_override_fonts/normal_font = ExtResource("6_idohh")
+theme_override_font_sizes/normal_font_size = 10
+text = "High Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayButton" type="Button" parent="." unique_id=1306588991]
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,9 +96,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 159.0
-offset_top = 100.0
+offset_top = 76.0
 offset_right = 225.0
-offset_bottom = 121.0
+offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_right = NodePath("../RestartButton")
@@ -79,6 +115,25 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3jcrr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_aobxe")
 text = "Play"
 
+[node name="Sound Label" type="RichTextLabel" parent="." unique_id=1321296064]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = 134.0
+offset_right = 228.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 20)
+theme_override_fonts/normal_font = ExtResource("6_idohh")
+theme_override_font_sizes/normal_font_size = 10
+text = "Sound: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RestartButton" type="Button" parent="." unique_id=2132406196]
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,16 +141,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 159.0
-offset_top = 130.0
+offset_top = 106.0
 offset_right = 225.0
-offset_bottom = 151.0
+offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../PlayButton")
 focus_neighbor_top = NodePath("../PlayButton")
-focus_neighbor_right = NodePath("../ExitButton")
-focus_neighbor_bottom = NodePath("../ExitButton")
-focus_next = NodePath("../ExitButton")
+focus_neighbor_right = NodePath("../SoundButton")
+focus_neighbor_bottom = NodePath("../SoundButton")
+focus_next = NodePath("../SoundButton")
 focus_previous = NodePath("../PlayButton")
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -107,6 +162,27 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wfhf6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3jcrr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_aobxe")
 text = "Restart"
+
+[node name="SoundButton" type="Button" parent="." unique_id=260278206]
+offset_left = 202.0
+offset_top = 127.0
+offset_right = 234.0
+offset_bottom = 159.0
+focus_neighbor_left = NodePath("../RestartButton")
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_right = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../RestartButton")
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_byewe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ab40c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sjh0l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qki4b")
+icon = ExtResource("8_3jcrr")
 
 [node name="ExitButton" type="Button" parent="." unique_id=1557987385]
 anchors_preset = 8
@@ -120,9 +196,9 @@ offset_right = 225.0
 offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath("../RestartButton")
-focus_neighbor_top = NodePath("../RestartButton")
-focus_previous = NodePath("../RestartButton")
+focus_neighbor_left = NodePath("../SoundButton")
+focus_neighbor_top = NodePath("../SoundButton")
+focus_previous = NodePath("../SoundButton")
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -134,25 +210,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3jcrr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_aobxe")
 text = "Quit"
 
-[node name="HighScore" type="RichTextLabel" parent="." unique_id=820376978]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 147.0
-offset_top = 67.0
-offset_right = 237.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(45, 20)
-theme_override_fonts/normal_font = ExtResource("6_idohh")
-theme_override_font_sizes/normal_font_size = 10
-text = "High Score: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Line2D" type="Line2D" parent="." unique_id=676583424]
 position = Vector2(128, 17)
 points = PackedVector2Array(0, 0, 128, 0, 128, 200, 0, 200)
@@ -161,4 +218,5 @@ width = 3.0
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="SoundButton" to="." method="_on_sound_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
