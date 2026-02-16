@@ -23,10 +23,14 @@ var root = null
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	root = get_tree().root
+	var score = load_from_file()
+	if score:
+		high_score = int(score)
 
 func _process(_delta: float) -> void:
 	if score > high_score:
 		high_score = score
+		save_to_file(str(high_score))
 
 func level_change() -> void:
 	scores = 0
@@ -85,3 +89,14 @@ func toggle_menu() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") and not start_up:
 		toggle_menu()
+
+func save_to_file(content):
+	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+	file.store_string(content)
+
+func load_from_file():
+	var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		return content
+	return null

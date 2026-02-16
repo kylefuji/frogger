@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://y0ivgkbwcqtb" path="res://icon.svg" id="7_jw2oo"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_n1sh7"]
-file = "res://Videos/Intro.ogg"
+file = "res://Videos/Intro.ogv"
 
 [node name="Intro" type="Node2D" unique_id=1805270620]
 script = ExtResource("1_n1sh7")
