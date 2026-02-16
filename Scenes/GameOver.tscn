@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://dycp8gfh1jf4k"]
+
+[ext_resource type="Script" uid="uid://dma5r1c3c1k3f" path="res://Scripts/game_over.gd" id="1_k52d1"]
+[ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="2_ktc4i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvobe"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udga5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6wcd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qaei5"]
+bg_color = Color(0.60933006, 0.6093301, 0.60933006, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldouh"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="GameOver" type="Node2D" unique_id=2135430761]
+script = ExtResource("1_k52d1")
+
+[node name="Panel" type="Panel" parent="." unique_id=1728061225]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = 9.0
+offset_right = 286.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverText" type="RichTextLabel" parent="Panel" unique_id=263943166]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 183.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("2_ktc4i")
+theme_override_font_sizes/normal_font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreText" type="RichTextLabel" parent="Panel" unique_id=498959108]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 37.0
+offset_right = 183.0
+offset_bottom = 55.0
+theme_override_fonts/normal_font = ExtResource("2_ktc4i")
+theme_override_font_sizes/normal_font_size = 16
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveScoreText" type="RichTextLabel" parent="Panel" unique_id=351098976]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 54.0
+offset_right = 183.0
+offset_bottom = 72.0
+theme_override_fonts/normal_font = ExtResource("2_ktc4i")
+text = "Save Your Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="Panel" unique_id=511301445]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 71.0
+offset_right = 148.0
+offset_bottom = 97.0
+focus_neighbor_right = NodePath("../SubmitButton")
+focus_neighbor_bottom = NodePath("../SubmitButton")
+focus_next = NodePath("../SubmitButton")
+theme_override_fonts/font = ExtResource("2_ktc4i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xvobe")
+placeholder_text = "Insert Name"
+alignment = 1
+max_length = 12
+
+[node name="HighScoreLabel" type="RichTextLabel" parent="Panel" unique_id=639810397]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 97.0
+offset_right = 183.0
+offset_bottom = 115.0
+theme_override_fonts/normal_font = ExtResource("2_ktc4i")
+theme_override_font_sizes/normal_font_size = 16
+text = "Current High Scores:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScores" type="RichTextLabel" parent="Panel" unique_id=1080616059]
+layout_mode = 0
+offset_top = 113.0
+offset_right = 187.0
+offset_bottom = 184.0
+theme_override_fonts/normal_font = ExtResource("2_ktc4i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubmitButton" type="Button" parent="Panel" unique_id=1351497770]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = 76.5
+offset_right = 32.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../NameInput")
+focus_neighbor_top = NodePath("../NameInput")
+focus_previous = NodePath("../NameInput")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ktc4i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_udga5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6wcd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qaei5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ldouh")
+text = "Submit"
+
+[node name="SubmittedButton" type="Button" parent="Panel" unique_id=1240207320]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = 76.5
+offset_right = 32.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../NameInput")
+focus_neighbor_top = NodePath("../NameInput")
+focus_previous = NodePath("../NameInput")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ktc4i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_udga5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6wcd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qaei5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ldouh")
+disabled = true
+text = "Submitted"
+
+[node name="HTTPRequestGetter" type="HTTPRequest" parent="." unique_id=377209079]
+
+[node name="HTTPRequestSender" type="HTTPRequest" parent="." unique_id=1534870215]
+
+[connection signal="pressed" from="Panel/SubmitButton" to="." method="_on_submit_button_pressed"]

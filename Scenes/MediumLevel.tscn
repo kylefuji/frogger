@@ -30,6 +30,7 @@
 [ext_resource type="FontFile" uid="uid://u4bk6u27h3x4" path="res://Font/Tiny5-Regular.ttf" id="25_ip6ku"]
 [ext_resource type="PackedScene" uid="uid://db0uc2nnelb26" path="res://Scenes/Menu.tscn" id="28_ctw2e"]
 [ext_resource type="Texture2D" uid="uid://c6j7vnebfh8gt" path="res://PNGs/menu_icon.png" id="30_pg335"]
+[ext_resource type="PackedScene" uid="uid://dycp8gfh1jf4k" path="res://Scenes/GameOver.tscn" id="30_t6tpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
 size = Vector2(384, 94)
@@ -139,14 +140,6 @@ script = ExtResource("1_554e7")
 
 [node name="Game" type="Node2D" parent="." unique_id=440480411]
 script = ExtResource("1_vvti0")
-
-[node name="Frog" parent="Game" unique_id=454979244 instance=ExtResource("2_jimsf")]
-z_index = 4096
-position = Vector2(192, 208)
-rotation = -1.5707964
-collision_mask = 3
-motion_mode = 1
-platform_wall_layers = 2
 
 [node name="Water" type="Area2D" parent="Game" unique_id=1255812646]
 position = Vector2(0, 8)
@@ -1193,16 +1186,6 @@ offset_bottom = 255.0
 theme_override_fonts/normal_font = ExtResource("25_ip6ku")
 text = "0"
 
-[node name="GameOverText" type="RichTextLabel" parent="Game" unique_id=1122678259]
-visible = false
-offset_left = 113.0
-offset_top = 93.0
-offset_right = 292.0
-offset_bottom = 133.0
-theme_override_fonts/normal_font = ExtResource("25_ip6ku")
-theme_override_font_sizes/normal_font_size = 32
-text = "Game Over"
-
 [node name="LevelTimer" type="Timer" parent="Game" unique_id=1116187538]
 
 [node name="FlySpawnTimer" type="Timer" parent="Game" unique_id=1152485307]
@@ -1220,12 +1203,19 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6htcm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_270w2")
 icon = ExtResource("30_pg335")
 
+[node name="Frog" parent="Game" unique_id=454979244 instance=ExtResource("2_jimsf")]
+position = Vector2(192, 208)
+rotation = -1.5707964
+collision_mask = 3
+motion_mode = 1
+platform_wall_layers = 2
+
+[node name="GameOver" parent="Game" unique_id=2135430761 instance=ExtResource("30_t6tpq")]
+visible = false
+
 [node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("28_ctw2e")]
 visible = false
 
-[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
-[connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
-[connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="body_entered" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_entered"]
 [connection signal="body_exited" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_exited"]
 [connection signal="body_entered" from="Game/TractorPath/TractorPathFollow/KillArea" to="Game/Frog" method="_on_kill_area_body_entered"]
@@ -1319,5 +1309,8 @@ visible = false
 [connection signal="fly_spawn_timer" from="Game/ScoreZones/ScoreArea5" to="." method="_on_fly_spawn_timer"]
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
 [connection signal="pressed" from="Game/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
+[connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
+[connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
 [connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]

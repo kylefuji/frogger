@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://c6j7vnebfh8gt" path="res://PNGs/menu_icon.png" id="33_iji3m"]
 [ext_resource type="Script" uid="uid://diw3bgtaqjywm" path="res://Scripts/otter.gd" id="34_52ba8"]
 [ext_resource type="Texture2D" uid="uid://qxxg2mw8sjw7" path="res://PNGs/otter0000.png" id="34_jktu5"]
+[ext_resource type="PackedScene" uid="uid://dycp8gfh1jf4k" path="res://Scenes/GameOver.tscn" id="34_lvqah"]
 [ext_resource type="Texture2D" uid="uid://ckdkd8go5ujvq" path="res://PNGs/otter0001.png" id="35_52ba8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
@@ -180,14 +181,6 @@ script = ExtResource("1_7mfan")
 
 [node name="Game" type="Node2D" parent="." unique_id=440480411]
 script = ExtResource("2_wqsxl")
-
-[node name="Frog" parent="Game" unique_id=454979244 instance=ExtResource("3_j2kv2")]
-z_index = 4096
-position = Vector2(192, 208)
-rotation = -1.5707964
-collision_mask = 3
-motion_mode = 1
-platform_wall_layers = 2
 
 [node name="Water" type="Area2D" parent="Game" unique_id=1255812646]
 position = Vector2(0, 8)
@@ -1354,16 +1347,6 @@ offset_bottom = 255.0
 theme_override_fonts/normal_font = ExtResource("31_ilad2")
 text = "0"
 
-[node name="GameOverText" type="RichTextLabel" parent="Game" unique_id=1122678259]
-visible = false
-offset_left = 113.0
-offset_top = 93.0
-offset_right = 292.0
-offset_bottom = 133.0
-theme_override_fonts/normal_font = ExtResource("31_ilad2")
-theme_override_font_sizes/normal_font_size = 32
-text = "Game Over"
-
 [node name="LevelTimer" type="Timer" parent="Game" unique_id=1116187538]
 
 [node name="FlySpawnTimer" type="Timer" parent="Game" unique_id=1152485307]
@@ -1381,6 +1364,16 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_6htcm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_270w2")
 icon = ExtResource("33_iji3m")
 
+[node name="Frog" parent="Game" unique_id=454979244 instance=ExtResource("3_j2kv2")]
+position = Vector2(192, 208)
+rotation = -1.5707964
+collision_mask = 3
+motion_mode = 1
+platform_wall_layers = 2
+
+[node name="GameOver" parent="Game" unique_id=2135430761 instance=ExtResource("34_lvqah")]
+visible = false
+
 [node name="Otter" type="Area2D" parent="Game" unique_id=600770426]
 position = Vector2(-214, 64)
 script = ExtResource("34_52ba8")
@@ -1396,9 +1389,6 @@ shape = SubResource("RectangleShape2D_5nksk")
 [node name="Menu" parent="." unique_id=1859447130 instance=ExtResource("32_57q3d")]
 visible = false
 
-[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
-[connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
-[connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="body_entered" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_entered"]
 [connection signal="body_exited" from="Game/Water" to="Game/Frog" method="_on_kill_area_body_exited"]
 [connection signal="body_entered" from="Game/TractorPath/TractorPathFollow/KillArea" to="Game/Frog" method="_on_kill_area_body_entered"]
@@ -1508,5 +1498,8 @@ visible = false
 [connection signal="score" from="Game/ScoreZones/ScoreArea5" to="Game/Frog" method="_on_score_area_score"]
 [connection signal="body_entered" from="Game/Snake2" to="Game/Frog" method="_on_bite_area_body_entered"]
 [connection signal="pressed" from="Game/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="resetLevel" from="Game/Frog" to="Game" method="_on_frog_reset_level"]
+[connection signal="updateLives" from="Game/Frog" to="Game" method="_update_lives"]
+[connection signal="updateScore" from="Game/Frog" to="Game" method="_update_score"]
 [connection signal="play_press" from="Menu" to="." method="_on_menu_play_press"]
 [connection signal="restart_press" from="Menu" to="." method="_on_menu_restart_press"]

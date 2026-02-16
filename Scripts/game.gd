@@ -28,11 +28,11 @@ func _update_lives() -> void:
 		$Lives.get_node("FrogLife%d" % (i+1)).visible = true
 	if Global.lives < 0:
 		$Frog.paused = true
-		$GameOverText.visible = true
+		$GameOver.game_over()
 		stop_timer()
 	else:
 		$Frog.paused = false
-		$GameOverText.visible = false
+		$GameOver.reset()
 		set_timer(30)
 		for missing in range(5, Global.lives, -1):
 			$Lives.get_node("FrogLife%d" % missing).visible = false

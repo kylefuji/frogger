@@ -19,18 +19,21 @@ var hard_level:Node2D = null
 var very_hard_level:Node2D = null
 var end_level:Node2D = null
 var root = null
+var purple_token_api_key:String = ""
+var purple_token_secret:String = ""
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	root = get_tree().root
-	var score = load_from_file()
-	if score:
-		high_score = int(score)
+	#var score = load_from_file()
+	#if score:
+		#high_score = int(score)
 
 func _process(_delta: float) -> void:
 	if score > high_score:
 		high_score = score
-		save_to_file(str(high_score))
+		#save_to_file(str(high_score))
 
 func level_change() -> void:
 	scores = 0

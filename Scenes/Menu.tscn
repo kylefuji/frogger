@@ -216,6 +216,8 @@ points = PackedVector2Array(0, 0, 128, 0, 128, 200, 0, 200)
 closed = true
 width = 3.0
 
+[node name="HTTPRequestGetter" type="HTTPRequest" parent="." unique_id=601855420]
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="SoundButton" to="." method="_on_sound_button_pressed"]
